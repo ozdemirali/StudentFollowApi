@@ -92,9 +92,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Models\BloodGroup.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Classroom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HomeHeating.cs" />
+    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\FamilyIncomeStatus.cs" />
+    <Compile Include="Models\HowToGetSchool.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Proximity.cs" />
+    <Compile Include="Models\Religion.cs" />
+    <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +120,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
