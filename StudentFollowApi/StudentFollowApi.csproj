@@ -100,11 +100,14 @@
     </Compile>
     <Compile Include="HomeHeating.cs" />
     <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamilyIncomeStatus.cs" />
     <Compile Include="Models\HowToGetSchool.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Proximity.cs" />
     <Compile Include="Models\Religion.cs" />
+    <Compile Include="Models\Sibling.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
