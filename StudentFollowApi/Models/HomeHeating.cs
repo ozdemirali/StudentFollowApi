@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace StudentFollowApi
+namespace StudentFollowApi.Models
 {
     public class HomeHeating
     {
@@ -12,5 +12,7 @@ namespace StudentFollowApi
 
         [MaxLength(50)]
         public string Name { get; set; }
+
+        public ICollection<Student> Students { get; set; }
     }
 }

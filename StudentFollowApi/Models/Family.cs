@@ -38,6 +38,17 @@ namespace StudentFollowApi.Models
 
         public bool TogetherOrSeparetly { get; set; }
 
+        public byte EducationId { get; set; }
+        public Education Education { get; set; }
+
+
+        public byte JobId { get; set; }
+        public Job Job { get; set; }
+
+      
+        [MaxLength(11)]
+        public string StudentId { get; set; }
+        public Student Student { get; set; }
 
     }
 }

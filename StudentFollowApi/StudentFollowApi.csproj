@@ -92,22 +92,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Context\StudentFollowDbContext.cs" />
+    <Compile Include="Migrations\202201081921359_createDatabase.cs" />
+    <Compile Include="Migrations\202201081921359_createDatabase.designer.cs">
+      <DependentUpon>202201081921359_createDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HomeHeating.cs" />
     <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamilyIncomeStatus.cs" />
+    <Compile Include="Models\Guardian.cs" />
+    <Compile Include="Models\HomeHeating.cs" />
     <Compile Include="Models\HowToGetSchool.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Proximity.cs" />
     <Compile Include="Models\Religion.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sibling.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -123,6 +133,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202201081921359_createDatabase.resx">
+      <DependentUpon>202201081921359_createDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

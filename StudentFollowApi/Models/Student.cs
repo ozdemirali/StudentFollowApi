@@ -8,7 +8,8 @@ namespace StudentFollowApi.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        [MaxLength(11)]
+        public string Id { get; set; }
 
         [MaxLength(50)]
         public string NameAndSurname { get; set; }
@@ -69,13 +70,39 @@ namespace StudentFollowApi.Models
 
         public bool scholarship { get; set; } //Burslu mu?
 
+        public byte HomeHeatingId { get; set; }
+        public HomeHeating HomeHeating { get; set; }
 
 
+        public byte BranchId { get; set; }
+        public Branch Branch { get; set; }
+
+        public byte ClassroomId { get; set; }
+        public Classroom Classroom { get; set; }
+
+        public byte WhitWhomLiveId { get; set; }
+        public WhitWhomLive WhitWhomLive { get; set; }
+
+        public byte BooldGroupId { get; set; }
+        public BloodGroup BloodGroup { get; set; }
+
+        public byte ReligionId { get; set; }
+        public Religion Religion { get; set; }
 
 
+        public byte HowToGetSchoolId { get; set; }
+        public HowToGetSchool HowToGetSchool { get; set; }
+
+        public byte FamilyIncomeStatusId { get; set; }
+        public FamilyIncomeStatus FamilyIncomeStatus { get; set; }
+
+        [MaxLength(11)]
+        public string GuardianId { get; set; }
+        public Guardian Guardian { get; set; }
 
 
-
+        public ICollection<Sibling> Siblings { get; set; }
+        public ICollection<Family> Families { get; set; }
 
 
     }
