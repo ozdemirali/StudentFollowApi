@@ -10,7 +10,7 @@ namespace StudentFollowApi.Context
 {
     public class StudentFollowDbContext:DbContext
     {
-        public StudentFollowDbContext():base("BStudentFollowDbConnectionString")
+        public StudentFollowDbContext():base("StudentFollowDbConnectionString")
         {
 
         }
@@ -29,6 +29,7 @@ namespace StudentFollowApi.Context
         public DbSet<Religion> Religions { get; set; }
         public DbSet<Sibling> Siblings { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentDetail> StudentDetails { get; set; }
         public DbSet<WhitWhomLive> WhitWhomLives { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }

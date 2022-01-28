@@ -18,7 +18,7 @@ namespace StudentFollowApi.Models
         public byte ProximityId { get; set; }
         public Proximity Proximity { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<StudentDetail> StudentDetails { get; set; }
 
     }
 }

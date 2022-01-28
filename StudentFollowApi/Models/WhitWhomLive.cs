@@ -16,6 +16,6 @@ namespace StudentFollowApi.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<StudentDetail> StudentDetails { get; set; }
     }
 }

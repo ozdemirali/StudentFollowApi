@@ -94,13 +94,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\StudentFollowDbContext.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Migrations\202201081921359_createDatabase.cs" />
-    <Compile Include="Migrations\202201081921359_createDatabase.designer.cs">
-      <DependentUpon>202201081921359_createDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201272038024_editTable.cs" />
-    <Compile Include="Migrations\202201272038024_editTable.designer.cs">
-      <DependentUpon>202201272038024_editTable.cs</DependentUpon>
+    <Compile Include="Migrations\202201282048356_Initial.cs" />
+    <Compile Include="Migrations\202201282048356_Initial.designer.cs">
+      <DependentUpon>202201282048356_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
@@ -122,9 +118,11 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sibling.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentDetail.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\StudentDetailViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,11 +138,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201081921359_createDatabase.resx">
-      <DependentUpon>202201081921359_createDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201272038024_editTable.resx">
-      <DependentUpon>202201272038024_editTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201282048356_Initial.resx">
+      <DependentUpon>202201282048356_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

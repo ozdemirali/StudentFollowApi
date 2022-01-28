@@ -22,39 +22,11 @@ namespace StudentFollowApi.Controllers
                             {
                                 Id = s.Id,
                                 NameAndSurname = s.NameAndSurname,
-                                UseMedicine = s.UseMedicine,
-                                NumberOfBrotherAndSister = s.NumberOfBrotherAndSister,
-                                ContinuallyIllness = s.ContinuallyIllness,
-                                PastIlness = s.PastIlness,
-                                Weight = s.Weight,
-                                Size = s.Size,
-                                Phone = s.Phone,
-                                Number = s.Number,
-                                UseProthes = s.UseProthes,
-                                PastOperation = s.PastOperation,
-                                Accident = s.Accident,
-                                FamilyIncomeMoney = s.FamilyIncomeMoney,
-                                FamilyIncomeStatusId = s.FamilyIncomeStatusId,
-                                TypeOfDisability = s.TypeOfDisability,
-                                Scheck = s.Scheck,
-                                PlaceOfBirth = s.PlaceOfBirth,
-                                DateOfBirth = s.DateOfBirth,
-                                RecordNumberOfIdentityCard = s.RecordNumberOfIdentityCard,
-                                GivenDateOfIdentityCard = s.GivenDateOfIdentityCard,
-                                RentOfHouse = s.RentOfHouse,
-                                HaveOwnHouse = s.HaveOwnHouse,
-                                Working = s.Working,
-                                OutsideFromFamily = s.OutsideFromFamily,
-                                CameFromAbroad = s.CameFromAbroad,
-                                Scholarship = s.Scholarship,
-                                HomeHeatingId = s.HomeHeatingId,
-                                BranchId = s.BranchId,
-                                ClassroomId = s.ClassroomId,
-                                WhitWhomLiveId = s.WhitWhomLiveId,
-                                BooldGroupId = s.BooldGroupId,
-                                HowToGetSchoolId = s.HowToGetSchoolId,
-                                GuardianId = s.GuardianId
+                                Number=s.Number,
+                                ClassroomId=s.ClassroomId
                             }).ToList<StudentViewModel>();
+
+               // var students = ctx.Students.ToList();
                 if (students.Count == 0)
                 {
                     return NotFound();
