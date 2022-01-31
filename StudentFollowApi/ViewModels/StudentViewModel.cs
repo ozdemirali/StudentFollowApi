@@ -12,5 +12,7 @@ namespace StudentFollowApi.ViewModels
         public string Number { get; set; }
 
         public byte ClassroomId { get; set; }
+        public byte BranchId { get; set; }
+        public string Address { get; set; }
     }
 }

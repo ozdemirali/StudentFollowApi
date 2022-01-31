@@ -17,8 +17,18 @@ namespace StudentFollowApi.Models
         [MaxLength(4)]
         public string Number { get; set; }
 
+       
         public byte ClassroomId { get; set; }
         public Classroom Classroom { get; set; }
+
+
+        public byte BranchId { get; set; }
+        public Branch Branch { get; set; }
+
+        [MaxLength(50)]
+        public string Address { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public virtual StudentDetail StudentDetail { get; set; }
     }

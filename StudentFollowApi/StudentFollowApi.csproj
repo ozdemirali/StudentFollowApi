@@ -98,6 +98,14 @@
     <Compile Include="Migrations\202201282048356_Initial.designer.cs">
       <DependentUpon>202201282048356_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201311809342_editedStudentTable.cs" />
+    <Compile Include="Migrations\202201311809342_editedStudentTable.designer.cs">
+      <DependentUpon>202201311809342_editedStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201311813243_addIsDeletedStudentTable.cs" />
+    <Compile Include="Migrations\202201311813243_addIsDeletedStudentTable.designer.cs">
+      <DependentUpon>202201311813243_addIsDeletedStudentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -140,6 +148,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202201282048356_Initial.resx">
       <DependentUpon>202201282048356_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201311809342_editedStudentTable.resx">
+      <DependentUpon>202201311809342_editedStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201311813243_addIsDeletedStudentTable.resx">
+      <DependentUpon>202201311813243_addIsDeletedStudentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

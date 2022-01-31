@@ -75,10 +75,6 @@ namespace StudentFollowApi.Models
         public byte HomeHeatingId { get; set; }
         public HomeHeating HomeHeating { get; set; }
 
-
-        public byte BranchId { get; set; }
-        public Branch Branch { get; set; }
-
         public byte WhitWhomLiveId { get; set; }
         public WhitWhomLive WhitWhomLive { get; set; }
 
