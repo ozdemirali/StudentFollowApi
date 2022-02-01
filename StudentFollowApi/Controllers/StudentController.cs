@@ -1,11 +1,15 @@
-﻿using StudentFollowApi.Context;
+﻿using ExcelDataReader;
+using StudentFollowApi.Context;
 using StudentFollowApi.Models;
 using StudentFollowApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
@@ -144,6 +148,68 @@ namespace StudentFollowApi.Controllers
                 }
             }
             return Ok();
-        } 
+        }
+
+
+        [HttpPost]
+        [Route("api/Student/Upload")]
+        public async Task<string> Upload()
+        {
+            var provider = new MultipartMemoryStreamProvider();
+            await Request.Content.ReadAsMultipartAsync(provider);
+
+            IExcelDataReader excelDataReader = null;
+
+            //extract file name and file contents
+            Stream stream = new MemoryStream(await provider.Contents[0].ReadAsByteArrayAsync());
+
+            //get fileName
+            var filename = provider.Contents[0].Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+
+            //Check file type
+            if (filename.EndsWith(".xls"))
+            {
+                excelDataReader = ExcelReaderFactory.CreateBinaryReader(stream);
+            }
+            else if (filename.EndsWith(".xlsx"))
+            {
+                excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+            }
+            else
+            {
+                return "The File is not Excel File";
+            }
+
+            DataSet dataSet = excelDataReader.AsDataSet();
+            Student student = new Student();
+
+            for (int i = 1; i < dataSet.Tables[0].Rows.Count; i++)
+            {
+                student.Id = dataSet.Tables[0].Rows[i][0].ToString();
+                student.NameAndSurname = dataSet.Tables[0].Rows[i][1].ToString();
+                student.Number = dataSet.Tables[0].Rows[i][2].ToString();
+                student.ClassroomId = Convert.ToByte(dataSet.Tables[0].Rows[i][3].ToString());
+                student.BranchId = Convert.ToByte(dataSet.Tables[0].Rows[i][4].ToString());
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    if (db.Students.Where(s => s.Id == student.Id).Count() > 0)
+                    {
+                        db.Entry(student).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    else
+                    {
+                        db.Entry(student).State = System.Data.Entity.EntityState.Added;
+                    }
+
+                    db.SaveChanges();
+
+                }
+            }
+
+            return "Ok";
+        }
+
+
     }
 }
