@@ -31,5 +31,10 @@ namespace StudentFollowApi.Models
         public bool IsDeleted { get; set; }
 
         public virtual StudentDetail StudentDetail { get; set; }
+
+        public ICollection<Sibling> Siblings { get; set; }
+
+       
+
     }
 }

@@ -20,6 +20,7 @@ namespace StudentFollowApi.Context
         public DbSet<Classroom> Classrooms { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Family> Families { get; set; }
+        public DbSet<FamilyStudent> FamilyStudents { get; set; }
         public DbSet<FamilyIncomeStatus> FamilyIncomeStatuses { get; set; }
         public DbSet<Guardian> Guardians { get; set; }
         public DbSet<HomeHeating> HomeHeatings { get; set; }

@@ -25,8 +25,8 @@ namespace StudentFollowApi.Models
 
         
         [MaxLength(11)]
-        public string StudentDetailId {get;set;}
-        public StudentDetail StudentDetail { get; set; }
+        public string StudentId {get;set;}
+        public Student Student { get; set; }
 
 
     }

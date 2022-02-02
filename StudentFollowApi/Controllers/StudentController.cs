@@ -22,6 +22,7 @@ namespace StudentFollowApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("api/Student/GetAllStudents")]
         public IHttpActionResult GetAllStudents()
         {
             //IList<StudentViewModel> students = null;
@@ -36,12 +37,12 @@ namespace StudentFollowApi.Controllers
                             where s.IsDeleted == false
                            select new 
                            {
-                               Id=s.Id,
-                               NameAndSurname=s.NameAndSurname,
-                               Number =s.Number,
+                               s.Id,
+                               s.NameAndSurname,
+                               s.Number,
                                Classroom=c.Name,
                                Branch=b.Name,
-                               Address=s.Address
+                               s.Address
                            }).ToList();
 
             
@@ -60,6 +61,7 @@ namespace StudentFollowApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Route("api/Student/PostNewStudent")]
         public IHttpActionResult PostNewStudent(StudentViewModel student)
         {
             if (!ModelState.IsValid)
@@ -90,6 +92,7 @@ namespace StudentFollowApi.Controllers
         /// <param name="student"></param>
         /// <returns></returns>
         [HttpPut]
+        [Route("api/Student/PutStudent")]
         public IHttpActionResult PutStudent(StudentViewModel student)
         {
             if (!ModelState.IsValid)
@@ -126,6 +129,7 @@ namespace StudentFollowApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Route("api/Student/DeleteStudent")]
         public IHttpActionResult DeleteStudent(string id)
         {
             if(id==null || id == "")

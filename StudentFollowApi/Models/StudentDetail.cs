@@ -97,7 +97,6 @@ namespace StudentFollowApi.Models
 
 
         public ICollection<Sibling> Siblings { get; set; }
-        public ICollection<Family> Families { get; set; }
 
         public virtual Student Student { get; set; }
 

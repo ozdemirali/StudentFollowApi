@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initialDatabase : DbMigration
     {
         public override void Up()
         {
@@ -45,7 +45,6 @@
                         CameFromAbroad = c.Boolean(nullable: false),
                         Scholarship = c.Boolean(nullable: false),
                         HomeHeatingId = c.Byte(nullable: false),
-                        BranchId = c.Byte(nullable: false),
                         WhitWhomLiveId = c.Byte(nullable: false),
                         BooldGroupId = c.Byte(nullable: false),
                         ReligionId = c.Byte(nullable: false),
@@ -56,7 +55,6 @@
                     })
                 .PrimaryKey(t => t.StudentId)
                 .ForeignKey("dbo.BloodGroups", t => t.BloodGroup_Id)
-                .ForeignKey("dbo.Branches", t => t.BranchId, cascadeDelete: true)
                 .ForeignKey("dbo.FamilyIncomeStatus", t => t.FamilyIncomeStatusId, cascadeDelete: true)
                 .ForeignKey("dbo.Guardians", t => t.GuardianId)
                 .ForeignKey("dbo.HomeHeatings", t => t.HomeHeatingId, cascadeDelete: true)
@@ -66,88 +64,12 @@
                 .ForeignKey("dbo.WhitWhomLives", t => t.WhitWhomLiveId, cascadeDelete: true)
                 .Index(t => t.StudentId)
                 .Index(t => t.HomeHeatingId)
-                .Index(t => t.BranchId)
                 .Index(t => t.WhitWhomLiveId)
                 .Index(t => t.ReligionId)
                 .Index(t => t.HowToGetSchoolId)
                 .Index(t => t.FamilyIncomeStatusId)
                 .Index(t => t.GuardianId)
                 .Index(t => t.BloodGroup_Id);
-            
-            CreateTable(
-                "dbo.Branches",
-                c => new
-                    {
-                        Id = c.Byte(nullable: false),
-                        Name = c.String(maxLength: 50),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Families",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 11),
-                        NameAndSurname = c.String(maxLength: 50),
-                        OfficePhone = c.String(maxLength: 10),
-                        MobilePhone = c.String(maxLength: 10),
-                        HomePhone = c.String(maxLength: 10),
-                        MatherOrFarher = c.Boolean(nullable: false),
-                        DisabilitySituation = c.String(maxLength: 50),
-                        ContinuallyIllness = c.String(maxLength: 50),
-                        Mail = c.String(maxLength: 50),
-                        AliveOrDead = c.Boolean(nullable: false),
-                        TogetherOrSeparetly = c.Boolean(nullable: false),
-                        EducationId = c.Byte(nullable: false),
-                        JobId = c.Byte(nullable: false),
-                        StudentDetailId = c.String(maxLength: 11),
-                        StudentDetail_StudentId = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Educations", t => t.EducationId, cascadeDelete: true)
-                .ForeignKey("dbo.Jobs", t => t.JobId, cascadeDelete: true)
-                .ForeignKey("dbo.StudentDetails", t => t.StudentDetail_StudentId)
-                .Index(t => t.EducationId)
-                .Index(t => t.JobId)
-                .Index(t => t.StudentDetail_StudentId);
-            
-            CreateTable(
-                "dbo.Educations",
-                c => new
-                    {
-                        Id = c.Byte(nullable: false),
-                        Name = c.String(maxLength: 50),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Siblings",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 11),
-                        NameAndSurname = c.String(maxLength: 50),
-                        ContinuallyIllness = c.String(maxLength: 50),
-                        EducationId = c.Byte(nullable: false),
-                        JobId = c.Byte(nullable: false),
-                        StudentDetailId = c.String(maxLength: 11),
-                        StudentDetail_StudentId = c.String(maxLength: 11),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Educations", t => t.EducationId, cascadeDelete: true)
-                .ForeignKey("dbo.Jobs", t => t.JobId, cascadeDelete: true)
-                .ForeignKey("dbo.StudentDetails", t => t.StudentDetail_StudentId)
-                .Index(t => t.EducationId)
-                .Index(t => t.JobId)
-                .Index(t => t.StudentDetail_StudentId);
-            
-            CreateTable(
-                "dbo.Jobs",
-                c => new
-                    {
-                        Id = c.Byte(nullable: false),
-                        Name = c.String(maxLength: 50),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.FamilyIncomeStatus",
@@ -208,6 +130,73 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Siblings",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 11),
+                        NameAndSurname = c.String(maxLength: 50),
+                        ContinuallyIllness = c.String(maxLength: 50),
+                        EducationId = c.Byte(nullable: false),
+                        JobId = c.Byte(nullable: false),
+                        StudentId = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Students", t => t.StudentId)
+                .ForeignKey("dbo.Jobs", t => t.JobId, cascadeDelete: true)
+                .ForeignKey("dbo.Educations", t => t.EducationId, cascadeDelete: true)
+                .ForeignKey("dbo.StudentDetails", t => t.StudentId)
+                .Index(t => t.EducationId)
+                .Index(t => t.JobId)
+                .Index(t => t.StudentId);
+            
+            CreateTable(
+                "dbo.Educations",
+                c => new
+                    {
+                        Id = c.Byte(nullable: false),
+                        Name = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Families",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 11),
+                        NameAndSurname = c.String(maxLength: 50),
+                        OfficePhone = c.String(maxLength: 10),
+                        MobilePhone = c.String(maxLength: 10),
+                        HomePhone = c.String(maxLength: 10),
+                        MatherOrFarher = c.Boolean(nullable: false),
+                        DisabilitySituation = c.String(maxLength: 50),
+                        ContinuallyIllness = c.String(maxLength: 50),
+                        Mail = c.String(maxLength: 50),
+                        AliveOrDead = c.Boolean(nullable: false),
+                        TogetherOrSeparetly = c.Boolean(nullable: false),
+                        EducationId = c.Byte(nullable: false),
+                        JobId = c.Byte(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Educations", t => t.EducationId, cascadeDelete: true)
+                .ForeignKey("dbo.Jobs", t => t.JobId, cascadeDelete: true)
+                .Index(t => t.EducationId)
+                .Index(t => t.JobId);
+            
+            CreateTable(
+                "dbo.FamilyStudents",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FamilyId = c.String(maxLength: 11),
+                        StudentId = c.String(maxLength: 11),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Families", t => t.FamilyId)
+                .ForeignKey("dbo.Students", t => t.StudentId)
+                .Index(t => t.FamilyId)
+                .Index(t => t.StudentId);
+            
+            CreateTable(
                 "dbo.Students",
                 c => new
                     {
@@ -215,13 +204,36 @@
                         NameAndSurname = c.String(maxLength: 50),
                         Number = c.String(maxLength: 4),
                         ClassroomId = c.Byte(nullable: false),
+                        BranchId = c.Byte(nullable: false),
+                        Address = c.String(maxLength: 50),
+                        IsDeleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Branches", t => t.BranchId, cascadeDelete: true)
                 .ForeignKey("dbo.Classrooms", t => t.ClassroomId, cascadeDelete: true)
-                .Index(t => t.ClassroomId);
+                .Index(t => t.ClassroomId)
+                .Index(t => t.BranchId);
+            
+            CreateTable(
+                "dbo.Branches",
+                c => new
+                    {
+                        Id = c.Byte(nullable: false),
+                        Name = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Classrooms",
+                c => new
+                    {
+                        Id = c.Byte(nullable: false),
+                        Name = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Jobs",
                 c => new
                     {
                         Id = c.Byte(nullable: false),
@@ -277,56 +289,60 @@
             DropForeignKey("dbo.Users", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.StudentDetails", "WhitWhomLiveId", "dbo.WhitWhomLives");
             DropForeignKey("dbo.StudentDetails", "StudentId", "dbo.Students");
+            DropForeignKey("dbo.Siblings", "StudentId", "dbo.StudentDetails");
+            DropForeignKey("dbo.Siblings", "EducationId", "dbo.Educations");
+            DropForeignKey("dbo.Siblings", "JobId", "dbo.Jobs");
+            DropForeignKey("dbo.Families", "JobId", "dbo.Jobs");
+            DropForeignKey("dbo.FamilyStudents", "StudentId", "dbo.Students");
+            DropForeignKey("dbo.Siblings", "StudentId", "dbo.Students");
             DropForeignKey("dbo.Students", "ClassroomId", "dbo.Classrooms");
+            DropForeignKey("dbo.Students", "BranchId", "dbo.Branches");
+            DropForeignKey("dbo.FamilyStudents", "FamilyId", "dbo.Families");
+            DropForeignKey("dbo.Families", "EducationId", "dbo.Educations");
             DropForeignKey("dbo.StudentDetails", "ReligionId", "dbo.Religions");
             DropForeignKey("dbo.StudentDetails", "HowToGetSchoolId", "dbo.HowToGetSchools");
             DropForeignKey("dbo.StudentDetails", "HomeHeatingId", "dbo.HomeHeatings");
             DropForeignKey("dbo.StudentDetails", "GuardianId", "dbo.Guardians");
             DropForeignKey("dbo.Guardians", "ProximityId", "dbo.Proximities");
             DropForeignKey("dbo.StudentDetails", "FamilyIncomeStatusId", "dbo.FamilyIncomeStatus");
-            DropForeignKey("dbo.Families", "StudentDetail_StudentId", "dbo.StudentDetails");
-            DropForeignKey("dbo.Siblings", "StudentDetail_StudentId", "dbo.StudentDetails");
-            DropForeignKey("dbo.Siblings", "JobId", "dbo.Jobs");
-            DropForeignKey("dbo.Families", "JobId", "dbo.Jobs");
-            DropForeignKey("dbo.Siblings", "EducationId", "dbo.Educations");
-            DropForeignKey("dbo.Families", "EducationId", "dbo.Educations");
-            DropForeignKey("dbo.StudentDetails", "BranchId", "dbo.Branches");
             DropForeignKey("dbo.StudentDetails", "BloodGroup_Id", "dbo.BloodGroups");
             DropIndex("dbo.Users", new[] { "RoleId" });
+            DropIndex("dbo.Students", new[] { "BranchId" });
             DropIndex("dbo.Students", new[] { "ClassroomId" });
-            DropIndex("dbo.Guardians", new[] { "ProximityId" });
-            DropIndex("dbo.Siblings", new[] { "StudentDetail_StudentId" });
-            DropIndex("dbo.Siblings", new[] { "JobId" });
-            DropIndex("dbo.Siblings", new[] { "EducationId" });
-            DropIndex("dbo.Families", new[] { "StudentDetail_StudentId" });
+            DropIndex("dbo.FamilyStudents", new[] { "StudentId" });
+            DropIndex("dbo.FamilyStudents", new[] { "FamilyId" });
             DropIndex("dbo.Families", new[] { "JobId" });
             DropIndex("dbo.Families", new[] { "EducationId" });
+            DropIndex("dbo.Siblings", new[] { "StudentId" });
+            DropIndex("dbo.Siblings", new[] { "JobId" });
+            DropIndex("dbo.Siblings", new[] { "EducationId" });
+            DropIndex("dbo.Guardians", new[] { "ProximityId" });
             DropIndex("dbo.StudentDetails", new[] { "BloodGroup_Id" });
             DropIndex("dbo.StudentDetails", new[] { "GuardianId" });
             DropIndex("dbo.StudentDetails", new[] { "FamilyIncomeStatusId" });
             DropIndex("dbo.StudentDetails", new[] { "HowToGetSchoolId" });
             DropIndex("dbo.StudentDetails", new[] { "ReligionId" });
             DropIndex("dbo.StudentDetails", new[] { "WhitWhomLiveId" });
-            DropIndex("dbo.StudentDetails", new[] { "BranchId" });
             DropIndex("dbo.StudentDetails", new[] { "HomeHeatingId" });
             DropIndex("dbo.StudentDetails", new[] { "StudentId" });
             DropTable("dbo.Users");
             DropTable("dbo.Roles");
             DropTable("dbo.Errors");
             DropTable("dbo.WhitWhomLives");
+            DropTable("dbo.Jobs");
             DropTable("dbo.Classrooms");
+            DropTable("dbo.Branches");
             DropTable("dbo.Students");
+            DropTable("dbo.FamilyStudents");
+            DropTable("dbo.Families");
+            DropTable("dbo.Educations");
+            DropTable("dbo.Siblings");
             DropTable("dbo.Religions");
             DropTable("dbo.HowToGetSchools");
             DropTable("dbo.HomeHeatings");
             DropTable("dbo.Proximities");
             DropTable("dbo.Guardians");
             DropTable("dbo.FamilyIncomeStatus");
-            DropTable("dbo.Jobs");
-            DropTable("dbo.Siblings");
-            DropTable("dbo.Educations");
-            DropTable("dbo.Families");
-            DropTable("dbo.Branches");
             DropTable("dbo.StudentDetails");
             DropTable("dbo.BloodGroups");
         }

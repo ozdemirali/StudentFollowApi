@@ -100,18 +100,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\StudentFollowDbContext.cs" />
+    <Compile Include="Controllers\FamilyController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Migrations\202201282048356_Initial.cs" />
-    <Compile Include="Migrations\202201282048356_Initial.designer.cs">
-      <DependentUpon>202201282048356_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201311809342_editedStudentTable.cs" />
-    <Compile Include="Migrations\202201311809342_editedStudentTable.designer.cs">
-      <DependentUpon>202201311809342_editedStudentTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201311813243_addIsDeletedStudentTable.cs" />
-    <Compile Include="Migrations\202201311813243_addIsDeletedStudentTable.designer.cs">
-      <DependentUpon>202201311813243_addIsDeletedStudentTable.cs</DependentUpon>
+    <Compile Include="Migrations\202202022024444_initialDatabase.cs" />
+    <Compile Include="Migrations\202202022024444_initialDatabase.designer.cs">
+      <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
@@ -124,6 +117,7 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamilyIncomeStatus.cs" />
+    <Compile Include="Models\FamilyStudent.cs" />
     <Compile Include="Models\Guardian.cs" />
     <Compile Include="Models\HomeHeating.cs" />
     <Compile Include="Models\HowToGetSchool.cs" />
@@ -137,6 +131,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FamilyViewModel.cs" />
     <Compile Include="ViewModels\StudentDetailViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
   </ItemGroup>
@@ -153,14 +148,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201282048356_Initial.resx">
-      <DependentUpon>202201282048356_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201311809342_editedStudentTable.resx">
-      <DependentUpon>202201311809342_editedStudentTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201311813243_addIsDeletedStudentTable.resx">
-      <DependentUpon>202201311813243_addIsDeletedStudentTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202022024444_initialDatabase.resx">
+      <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
