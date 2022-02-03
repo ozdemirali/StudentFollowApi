@@ -41,9 +41,11 @@ namespace StudentFollowApi.Models
         public byte EducationId { get; set; }
         public Education Education { get; set; }
 
-
         public byte JobId { get; set; }
         public Job Job { get; set; }
+
+        public bool IsDeleted { get; set; }
+
 
       
         public ICollection<FamilyStudent> FamilyStudents { get; set; }

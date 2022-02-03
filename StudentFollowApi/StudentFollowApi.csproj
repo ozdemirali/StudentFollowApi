@@ -106,6 +106,10 @@
     <Compile Include="Migrations\202202022024444_initialDatabase.designer.cs">
       <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202031111030_addColumnFamilyTable.cs" />
+    <Compile Include="Migrations\202202031111030_addColumnFamilyTable.designer.cs">
+      <DependentUpon>202202031111030_addColumnFamilyTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -150,6 +154,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202202022024444_initialDatabase.resx">
       <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202031111030_addColumnFamilyTable.resx">
+      <DependentUpon>202202031111030_addColumnFamilyTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
