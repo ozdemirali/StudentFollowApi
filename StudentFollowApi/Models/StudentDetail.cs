@@ -96,8 +96,6 @@ namespace StudentFollowApi.Models
         public Guardian Guardian { get; set; }
 
 
-        public ICollection<Sibling> Siblings { get; set; }
-
         public virtual Student Student { get; set; }
 
 

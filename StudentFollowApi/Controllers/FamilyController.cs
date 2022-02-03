@@ -108,7 +108,7 @@ namespace StudentFollowApi.Controllers
             }
             using (var db=new StudentFollowDbContext())
             {
-                var existingFamily = db.Families.Where(f => f.Id == family.Id).FirstOrDefault<Family>();
+                var existingFamily = db.Families.Where(f => f.Id == family.Id).FirstOrDefault();
 
                 if(existingFamily!=null)
                 {

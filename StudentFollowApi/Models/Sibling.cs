@@ -28,6 +28,8 @@ namespace StudentFollowApi.Models
         public string StudentId {get;set;}
         public Student Student { get; set; }
 
+        public bool IsDeleted { get; set; }
+
 
     }
 }

@@ -102,7 +102,7 @@ namespace StudentFollowApi.Controllers
             using (var db=new StudentFollowDbContext())
             {
                 var existingStudent = db.Students.Where(s => s.Id == student.Id && s.IsDeleted == false)
-                                                .FirstOrDefault<Student>();
+                                                .FirstOrDefault();
                 if (existingStudent != null)
                 {
                     existingStudent.NameAndSurname = student.NameAndSurname;
