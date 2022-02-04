@@ -17,10 +17,11 @@ namespace StudentFollowApi.Models
         [MaxLength(4)]
         public string Number { get; set; }
 
-       
+        [MaxLength(11)]
+        public string Phone { get; set; }
+
         public byte ClassroomId { get; set; }
         public Classroom Classroom { get; set; }
-
 
         public byte BranchId { get; set; }
         public Branch Branch { get; set; }

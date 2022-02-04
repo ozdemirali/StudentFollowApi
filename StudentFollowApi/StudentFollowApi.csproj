@@ -101,8 +101,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\StudentFollowDbContext.cs" />
     <Compile Include="Controllers\FamilyController.cs" />
+    <Compile Include="Controllers\GuardianController.cs" />
     <Compile Include="Controllers\SiblingController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentDetailController.cs" />
     <Compile Include="Migrations\202202022024444_initialDatabase.cs" />
     <Compile Include="Migrations\202202022024444_initialDatabase.designer.cs">
       <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
@@ -118,6 +120,14 @@
     <Compile Include="Migrations\202202031507429_addColumnSiblingTable.cs" />
     <Compile Include="Migrations\202202031507429_addColumnSiblingTable.designer.cs">
       <DependentUpon>202202031507429_addColumnSiblingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202041830018_editStudentDetailTable.cs" />
+    <Compile Include="Migrations\202202041830018_editStudentDetailTable.designer.cs">
+      <DependentUpon>202202041830018_editStudentDetailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202041836214_editGuardianTable.cs" />
+    <Compile Include="Migrations\202202041836214_editGuardianTable.designer.cs">
+      <DependentUpon>202202041836214_editGuardianTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
@@ -145,6 +155,7 @@
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FamilyViewModel.cs" />
+    <Compile Include="ViewModels\GuardianViewModel.cs" />
     <Compile Include="ViewModels\SiblingViewModel.cs" />
     <Compile Include="ViewModels\StudentDetailViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
@@ -173,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202031507429_addColumnSiblingTable.resx">
       <DependentUpon>202202031507429_addColumnSiblingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202041830018_editStudentDetailTable.resx">
+      <DependentUpon>202202041830018_editStudentDetailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202041836214_editGuardianTable.resx">
+      <DependentUpon>202202041836214_editGuardianTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

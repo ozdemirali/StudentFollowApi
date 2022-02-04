@@ -15,8 +15,6 @@ namespace StudentFollowApi.Models
         [MaxLength(11)]
         public string StudentId { get; set; }
 
-
-
         [MaxLength(50)]
         public string UseMedicine { get; set; }
         public byte NumberOfBrotherAndSister { get; set; }
@@ -31,11 +29,7 @@ namespace StudentFollowApi.Models
 
         public decimal Size { get; set; } //Boyu
 
-        [MaxLength(11)]
-        public string Phone { get; set; }
-
-
-        [MaxLength(4)]
+        [MaxLength(50)]
         public string UseProthes { get; set; }  //Kullandığı Protez
 
         [MaxLength(50)]
@@ -56,7 +50,7 @@ namespace StudentFollowApi.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(9)]
         public string RecordNumberOfIdentityCard { get; set; }
         public DateTime GivenDateOfIdentityCard { get;set; }
 
@@ -95,6 +89,7 @@ namespace StudentFollowApi.Models
         public string GuardianId { get; set; }
         public Guardian Guardian { get; set; }
 
+        public bool IsDeleted { get; set; }
 
         public virtual Student Student { get; set; }
 

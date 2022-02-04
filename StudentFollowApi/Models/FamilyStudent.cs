@@ -13,9 +13,11 @@ namespace StudentFollowApi.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [MaxLength(11)]
         public string FamilyId { get; set; }
         public Family Family { get; set; }
 
+        [MaxLength(11)]
         public string StudentId { get; set; }
         public Student Student { get; set; }
     }

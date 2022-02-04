@@ -10,6 +10,8 @@ namespace StudentFollowApi.Models
     {
         [MaxLength(11)]
         public string Id { get; set; }
+
+        [MaxLength(50)]
         public string NameAndSurname { get; set; }
         
         [MaxLength(11)]
@@ -17,6 +19,8 @@ namespace StudentFollowApi.Models
 
         public byte ProximityId { get; set; }
         public Proximity Proximity { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public ICollection<StudentDetail> StudentDetails { get; set; }
 

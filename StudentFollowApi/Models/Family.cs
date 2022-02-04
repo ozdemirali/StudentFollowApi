@@ -14,13 +14,13 @@ namespace StudentFollowApi.Models
         [MaxLength(50)]
         public string NameAndSurname { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(11)]
         public string OfficePhone { get; set; }
         
-        [MaxLength(10)]
+        [MaxLength(11)]
         public string MobilePhone { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(11)]
         public string HomePhone { get; set; }
 
         public bool MatherOrFarher { get; set; }
