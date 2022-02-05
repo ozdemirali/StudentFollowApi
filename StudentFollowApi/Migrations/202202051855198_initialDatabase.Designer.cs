@@ -7,13 +7,13 @@ namespace StudentFollowApi.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class editGuardianTable : IMigrationMetadata
+    public sealed partial class initialDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(editGuardianTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202202041836214_editGuardianTable"; }
+            get { return "202202051855198_initialDatabase"; }
         }
         
         string IMigrationMetadata.Source

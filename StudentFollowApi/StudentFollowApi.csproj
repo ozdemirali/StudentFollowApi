@@ -105,29 +105,13 @@
     <Compile Include="Controllers\SiblingController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDetailController.cs" />
-    <Compile Include="Migrations\202202022024444_initialDatabase.cs" />
-    <Compile Include="Migrations\202202022024444_initialDatabase.designer.cs">
-      <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202202051855198_initialDatabase.cs" />
+    <Compile Include="Migrations\202202051855198_initialDatabase.designer.cs">
+      <DependentUpon>202202051855198_initialDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202202031111030_addColumnFamilyTable.cs" />
-    <Compile Include="Migrations\202202031111030_addColumnFamilyTable.designer.cs">
-      <DependentUpon>202202031111030_addColumnFamilyTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202031449167_removeColumnStudentDetailTable.cs" />
-    <Compile Include="Migrations\202202031449167_removeColumnStudentDetailTable.designer.cs">
-      <DependentUpon>202202031449167_removeColumnStudentDetailTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202031507429_addColumnSiblingTable.cs" />
-    <Compile Include="Migrations\202202031507429_addColumnSiblingTable.designer.cs">
-      <DependentUpon>202202031507429_addColumnSiblingTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202041830018_editStudentDetailTable.cs" />
-    <Compile Include="Migrations\202202041830018_editStudentDetailTable.designer.cs">
-      <DependentUpon>202202041830018_editStudentDetailTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202041836214_editGuardianTable.cs" />
-    <Compile Include="Migrations\202202041836214_editGuardianTable.designer.cs">
-      <DependentUpon>202202041836214_editGuardianTable.cs</DependentUpon>
+    <Compile Include="Migrations\202202051902003_editStudentDetailTable.cs" />
+    <Compile Include="Migrations\202202051902003_editStudentDetailTable.designer.cs">
+      <DependentUpon>202202051902003_editStudentDetailTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
@@ -173,23 +157,11 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202022024444_initialDatabase.resx">
-      <DependentUpon>202202022024444_initialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202051855198_initialDatabase.resx">
+      <DependentUpon>202202051855198_initialDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202031111030_addColumnFamilyTable.resx">
-      <DependentUpon>202202031111030_addColumnFamilyTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202031449167_removeColumnStudentDetailTable.resx">
-      <DependentUpon>202202031449167_removeColumnStudentDetailTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202031507429_addColumnSiblingTable.resx">
-      <DependentUpon>202202031507429_addColumnSiblingTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202041830018_editStudentDetailTable.resx">
-      <DependentUpon>202202041830018_editStudentDetailTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202041836214_editGuardianTable.resx">
-      <DependentUpon>202202041836214_editGuardianTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202051902003_editStudentDetailTable.resx">
+      <DependentUpon>202202051902003_editStudentDetailTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

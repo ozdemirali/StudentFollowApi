@@ -43,7 +43,7 @@ namespace StudentFollowApi.Models
         [MaxLength(50)]
         public string TypeOfDisability { get; set; } //Özür Türü
 
-        public byte Scheck { get; set; } // Sosyal Hiz. Çocuk Esirgeme Kurumuna Tabi mi?
+        public bool Scheck { get; set; } // Sosyal Hiz. Çocuk Esirgeme Kurumuna Tabi mi?
 
         [MaxLength(50)]
         public string PlaceOfBirth { get; set; } //Doğum Yeri
@@ -72,7 +72,7 @@ namespace StudentFollowApi.Models
         public byte WhitWhomLiveId { get; set; }
         public WhitWhomLive WhitWhomLive { get; set; }
 
-        public byte BooldGroupId { get; set; }
+        public byte BloodGroupId { get; set; }
         public BloodGroup BloodGroup { get; set; }
 
         public byte ReligionId { get; set; }

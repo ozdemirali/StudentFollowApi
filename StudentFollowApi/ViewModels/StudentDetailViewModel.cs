@@ -32,7 +32,7 @@ namespace StudentFollowApi.ViewModels
         public bool Scholarship { get; set; } //Burslu mu?
         public byte HomeHeatingId { get; set; }
         public byte WhitWhomLiveId { get; set; }
-        public byte BooldGroupId { get; set; }
+        public byte BloodGroupId { get; set; }
         public byte ReligionId { get; set; }
         public byte HowToGetSchoolId { get; set; }
         public byte FamilyIncomeStatusId { get; set; }
