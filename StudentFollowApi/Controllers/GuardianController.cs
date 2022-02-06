@@ -20,7 +20,6 @@ namespace StudentFollowApi.Controllers
         [Route("api/Guardian/GetAllGuardians")]
         public IHttpActionResult GetAllGuardians()
         {
-            //IList<StudentViewModel> students = null;
 
             using (var db = new StudentFollowDbContext())
             {
@@ -43,6 +42,38 @@ namespace StudentFollowApi.Controllers
                 }
 
                 return Ok(guardians);
+
+            }
+        }
+
+        /// <summary>
+        /// This method get data from Guardian Table by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IHttpActionResult GetGuardianById(string id)
+        {
+            using (var db = new StudentFollowDbContext())
+            {
+                var guardian = (from g in db.Guardians
+                                 join p in db.Proximities
+                                 on g.ProximityId equals p.Id
+                                 where g.Id==id && g.IsDeleted == false
+                                 select new
+                                 {
+                                     g.Id,
+                                     g.NameAndSurname,
+                                     g.MobilePhone,
+                                     Proximity = p.Name
+                                 }).ToList();
+
+
+                if (guardian.Count == 0)
+                {
+                    return NotFound();
+                }
+
+                return Ok(guardian);
 
             }
         }

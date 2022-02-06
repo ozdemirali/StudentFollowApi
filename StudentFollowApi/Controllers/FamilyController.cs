@@ -20,8 +20,6 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/GetAllFamilies")]
         public IHttpActionResult GetAllFamilies()
         {
-           
-
             using (var db=new StudentFollowDbContext())
             {
                 var families = (from f in db.Families
@@ -52,8 +50,6 @@ namespace StudentFollowApi.Controllers
 
                 return Ok(families);
             }
-
-            
         }
 
 
