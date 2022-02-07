@@ -44,9 +44,42 @@ namespace StudentFollowApi.Controllers
             }
         }
 
+        /// <summary>
+        /// This methhod get Sibling from table by id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Sibling/GetSiblingById")]
+        public IHttpActionResult GetSiblingById(string id)
+        {
+            using (var db = new StudentFollowDbContext())
+            {
+                var sibling = (from sb in db.Siblings
+                                join j in db.Jobs
+                                on sb.JobId equals j.Id
+                                join e in db.Educations
+                                on sb.EducationId equals e.Id
+                                where sb.Id==id && sb.IsDeleted == false 
+                                select new
+                                {
+                                    sb.Id,
+                                    sb.NameAndSurname,
+                                    sb.ContinuallyIllness,
+                                    Job = j.Name,
+                                    Education = e.Name
+                                }).ToList();
+
+                if (sibling == null)
+                {
+                    return NotFound();
+                }
+                return Ok(sibling);
+            }
+        }
+
 
         /// <summary>
-        /// This method get all sibling only by StudentId
+        /// This method get all sibling only by studentId
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

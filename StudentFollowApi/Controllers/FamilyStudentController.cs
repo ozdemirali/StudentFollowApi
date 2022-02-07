@@ -13,7 +13,7 @@ namespace StudentFollowApi.Controllers
     public class FamilyStudentController : ApiController
     {
         /// <summary>
-        /// This method get data from familyStudent Table by tudentId
+        /// This method get data from familyStudent Table by studentId
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -22,6 +22,9 @@ namespace StudentFollowApi.Controllers
         public IHttpActionResult GetFamilyStudentById(string id)
         {
             IList<FamilyStudentViewModel> familyStudent = null;
+
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
 
             using (var db=new StudentFollowDbContext())
             {

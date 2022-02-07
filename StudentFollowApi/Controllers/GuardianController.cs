@@ -53,6 +53,9 @@ namespace StudentFollowApi.Controllers
         /// <returns></returns>
         public IHttpActionResult GetGuardianById(string id)
         {
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
+
             using (var db = new StudentFollowDbContext())
             {
                 var guardian = (from g in db.Guardians

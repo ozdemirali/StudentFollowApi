@@ -57,6 +57,46 @@ namespace StudentFollowApi.Controllers
         }
 
         /// <summary>
+        /// This method get student data from Student Table by id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Student/GetStudentById")]
+        public IHttpActionResult GetByStudent(string id)
+        {
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
+
+            using (var db = new StudentFollowDbContext())
+            {
+                var student = (from s in db.Students
+                                join c in db.Classrooms
+                                on s.ClassroomId equals c.Id
+                                join b in db.Branches
+                                on s.BranchId equals b.Id
+                                where s.Id==id && s.IsDeleted == false
+                                select new
+                                {
+                                    s.Id,
+                                    s.NameAndSurname,
+                                    s.Number,
+                                    Classroom = c.Name,
+                                    Branch = b.Name,
+                                    s.Address
+                                }).FirstOrDefault();
+
+
+                if (student== null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(student);
+
+            }
+        }
+
+        /// <summary>
         /// The method new Student insert to Student Table
         /// </summary>
         /// <returns></returns>

@@ -13,7 +13,7 @@ namespace StudentFollowApi.Controllers
     public class FamilyController : ApiController
     {
         /// <summary>
-        /// This model get information about students' families
+        /// This model get all data about students' families
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -51,6 +51,96 @@ namespace StudentFollowApi.Controllers
                 return Ok(families);
             }
         }
+
+        /// <summary>
+        /// This model get information about family by id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Family/GetFamilyById")]
+        public IHttpActionResult GetFamilyById(string id)
+        {
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
+
+            using (var db = new StudentFollowDbContext())
+            {
+                var family = (from f in db.Families
+                                join j in db.Jobs
+                                on f.JobId equals j.Id
+                                join e in db.Educations
+                                on f.EducationId equals e.Id
+                                where f.Id==id && f.IsDeleted == false
+                                select new
+                                {
+                                    f.Id,
+                                    f.NameAndSurname,
+                                    f.OfficePhone,
+                                    f.MobilePhone,
+                                    f.MatherOrFarher,
+                                    f.DisabilitySituation,
+                                    f.ContinuallyIllness,
+                                    f.Mail,
+                                    f.AliveOrDead,
+                                    f.TogetherOrSeparetly,
+                                }).FirstOrDefault();
+
+
+                if (family == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(family);
+            }
+        }
+
+
+        /// <summary>
+        /// This model get information about students' families by studentId
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Family/GetFamilyByStudentId")]
+        public IHttpActionResult GetFamilyByStudentId(string id)
+        {
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
+
+            using (var db = new StudentFollowDbContext())
+            {
+                var families = (from f in db.Families
+                                join fs in db.FamilyStudents
+                                on f.Id equals fs.FamilyId
+                                join j in db.Jobs
+                                on f.JobId equals j.Id
+                                join e in db.Educations
+                                on f.EducationId equals e.Id
+                                where f.IsDeleted == false && fs.StudentId==id
+                                select new
+                                {
+                                    f.Id,
+                                    f.NameAndSurname,
+                                    f.OfficePhone,
+                                    f.MobilePhone,
+                                    f.MatherOrFarher,
+                                    f.DisabilitySituation,
+                                    f.ContinuallyIllness,
+                                    f.Mail,
+                                    f.AliveOrDead,
+                                    f.TogetherOrSeparetly,
+                                }).ToList();
+
+
+                if (families.Count == 0)
+                {
+                    return NotFound();
+                }
+
+                return Ok(families);
+            }
+        }
+
 
 
         /// <summary>

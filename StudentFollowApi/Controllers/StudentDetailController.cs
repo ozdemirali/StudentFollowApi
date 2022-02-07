@@ -83,11 +83,83 @@ namespace StudentFollowApi.Controllers
         }
 
         /// <summary>
+        /// this method get data from StudentDetail Table by studentId
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/StudentDetail/GetStudentDetailById")]
+        public IHttpActionResult GetStudentDetailById(string id)
+        {
+            if (id == null || id == "")
+                return BadRequest("Invalid id");
+
+            using (var db = new StudentFollowDbContext())
+            {
+                var studentDetail = (from sd in db.StudentDetails
+                                      join bg in db.BloodGroups
+                                      on sd.BloodGroupId equals bg.Id
+                                      join fis in db.FamilyIncomeStatuses
+                                      on sd.FamilyIncomeStatusId equals fis.Id
+                                      join hh in db.HomeHeatings
+                                      on sd.HomeHeatingId equals hh.Id
+                                      join hgs in db.HowToGetSchools
+                                      on sd.HowToGetSchoolId equals hgs.Id
+                                      join rg in db.Religions
+                                      on sd.ReligionId equals rg.Id
+                                      join wwl in db.WhitWhomLives
+                                      on sd.WhitWhomLiveId equals wwl.Id
+
+                                      where sd.IsDeleted == false
+                                      select new
+                                      {
+                                          sd.StudentId,
+                                          sd.UseMedicine,
+                                          sd.NumberOfBrotherAndSister,
+                                          sd.ContinuallyIllness,
+                                          sd.PastIlness,
+                                          sd.Weight,
+                                          sd.Size,
+                                          sd.UseProthes,
+                                          sd.PastOperation,
+                                          sd.Accident,
+                                          sd.FamilyIncomeMoney,
+                                          sd.TypeOfDisability,
+                                          sd.Scheck,
+                                          sd.PlaceOfBirth,
+                                          sd.DateOfBirth,
+                                          sd.RecordNumberOfIdentityCard,
+                                          sd.GivenDateOfIdentityCard,
+                                          sd.RentOfHouse,
+                                          sd.HaveOwnHouse,
+                                          sd.Working,
+                                          sd.OutsideFromFamily,
+                                          sd.CameFromAbroad,
+                                          sd.Scholarship,
+                                          HomeHeating = hh.Name,
+                                          WhitWhomLive = wwl.Name,
+                                          BloodGroup = bg.Name,
+                                          Religion = rg.Name,
+                                          HowToGetSchool = hgs.Name,
+                                          FamilyIncomeStatus = fis.Name,
+                                          sd.GuardianId
+                                      }).FirstOrDefault();
+
+
+                if (studentDetail == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(studentDetail);
+            }
+        }
+
+        /// <summary>
         /// This method add new record to StudentDetail Table from Database
         /// </summary>
         /// <param name="studentDetail"></param>
         /// <returns></returns>
-       [HttpPost]
+        [HttpPost]
        [Route("api/StudentDetail/PostNewStudentDetail")]
         public IHttpActionResult PostNewStudentDetail(StudentDetailViewModel studentDetail)
         {
