@@ -10,7 +10,7 @@ namespace StudentFollowApi.Models
     {
         [MaxLength(11)]
         public string Id { get; set; }
-        public string NameAndSurname { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
 
         public byte RoleId { get; set; }
