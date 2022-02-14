@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
 {
+    [Authorize]
     public class FamilyStudentController : ApiController
     {
         /// <summary>
@@ -21,25 +22,45 @@ namespace StudentFollowApi.Controllers
         [Route("api/FamilyStudent/GetFamilyStudentById")]
         public IHttpActionResult GetFamilyStudentById(string id)
         {
-            IList<FamilyStudentViewModel> familyStudent = null;
-
-            if (id == null || id == "")
-                return BadRequest("Invalid id");
-
-            using (var db=new StudentFollowDbContext())
+            try
             {
+                IList<FamilyStudentViewModel> familyStudent = null;
+
+                if (id == null || id == "")
+                    return BadRequest("Invalid id");
+
+                using (var db = new StudentFollowDbContext())
+                {
                     familyStudent = db.FamilyStudents
                                     .Where(fs => fs.StudentId == id)
-                                    .Select(s=>new FamilyStudentViewModel(){ 
-                                     Id=s.Id,
-                                     FamilyId=s.FamilyId,
-                                     StudentId=s.StudentId,
+                                    .Select(s => new FamilyStudentViewModel()
+                                    {
+                                        Id = s.Id,
+                                        FamilyId = s.FamilyId,
+                                        StudentId = s.StudentId,
                                     }).ToList();
+                }
+
+                if (familyStudent.Count == 0)
+                    return NotFound();
+                return Ok(familyStudent);
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
             }
 
-            if (familyStudent.Count == 0)
-                return NotFound();
-            return Ok(familyStudent);
+            
         }
 
 
@@ -52,19 +73,39 @@ namespace StudentFollowApi.Controllers
         [Route("api/FamilyStudent/PostNewFamilyStudent")]
         public IHttpActionResult PostNewFamilyStudent(FamilyStudentViewModel familyStudent)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Invalid data");
-            
-            using (var db=new StudentFollowDbContext())
+            try
             {
-                db.FamilyStudents.Add(new Models.FamilyStudent() {
-                    FamilyId = familyStudent.FamilyId,
-                    StudentId =familyStudent.StudentId,
-                });
-                db.SaveChanges();
+                if (!ModelState.IsValid)
+                    return BadRequest("Invalid data");
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    db.FamilyStudents.Add(new Models.FamilyStudent()
+                    {
+                        FamilyId = familyStudent.FamilyId,
+                        StudentId = familyStudent.StudentId,
+                    });
+                    db.SaveChanges();
+                }
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
             }
 
-            return Ok();
+           
         }
 
 
@@ -77,27 +118,46 @@ namespace StudentFollowApi.Controllers
         [Route("api/FamilyStudent/PutFamilyStudent")]
         public IHttpActionResult PutFamilyStudent(FamilyStudentViewModel familyStudent)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Not a valid model");
-
-            using (var db=new StudentFollowDbContext())
+            try
             {
-                var existingFamilyStudent = db.FamilyStudents
-                                            .Where(fs => fs.Id == familyStudent.Id)
-                                            .FirstOrDefault();
+                if (!ModelState.IsValid)
+                    return BadRequest("Not a valid model");
 
-                if(existingFamilyStudent != null)
+                using (var db = new StudentFollowDbContext())
                 {
-                    existingFamilyStudent.FamilyId = familyStudent.FamilyId;
-                    existingFamilyStudent.StudentId = familyStudent.StudentId;
+                    var existingFamilyStudent = db.FamilyStudents
+                                                .Where(fs => fs.Id == familyStudent.Id)
+                                                .FirstOrDefault();
+
+                    if (existingFamilyStudent != null)
+                    {
+                        existingFamilyStudent.FamilyId = familyStudent.FamilyId;
+                        existingFamilyStudent.StudentId = familyStudent.StudentId;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
                 }
-                else
-                {
-                    return NotFound();
-                }
+
+                return Ok(e.Message);
             }
-            return Ok();
+
+            
         }
 
         /// <summary>
@@ -109,17 +169,37 @@ namespace StudentFollowApi.Controllers
         [Route("api/FamilyStudent/DeleteFamilyStudent")]
         public IHttpActionResult DeleteFamilyStudent(int id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid familyStudent id");
-            using (var db= new StudentFollowDbContext())
+            try
             {
-                var familyStudent = db.FamilyStudents
-                                    .Where(fs => fs.Id == id)
-                                    .FirstOrDefault();
-                db.Entry(familyStudent).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
+                if (id <= 0)
+                    return BadRequest("Not a valid familyStudent id");
+                using (var db = new StudentFollowDbContext())
+                {
+                    var familyStudent = db.FamilyStudents
+                                        .Where(fs => fs.Id == id)
+                                        .FirstOrDefault();
+                    db.Entry(familyStudent).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                }
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+            
         }
     }
 }

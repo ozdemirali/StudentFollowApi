@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
 {
+    [Authorize]
     public class FamilyController : ApiController
     {
         /// <summary>
@@ -20,36 +21,54 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/GetAllFamilies")]
         public IHttpActionResult GetAllFamilies()
         {
-            using (var db=new StudentFollowDbContext())
+            try
             {
-                var families = (from f in db.Families
-                                join j in db.Jobs
-                                on f.JobId equals j.Id
-                                join e in db.Educations
-                                on f.EducationId equals e.Id
-                                where f.IsDeleted==false
-                                select new
-                                {
-                                    f.Id,
-                                    f.NameAndSurname,
-                                    f.OfficePhone,
-                                    f.MobilePhone,
-                                    f.MatherOrFarher,
-                                    f.DisabilitySituation,
-                                    f.ContinuallyIllness,
-                                    f.Mail,
-                                    f.AliveOrDead,
-                                    f.TogetherOrSeparetly,
-                                }).ToList();
-
-
-                if (families.Count==0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var families = (from f in db.Families
+                                    join j in db.Jobs
+                                    on f.JobId equals j.Id
+                                    join e in db.Educations
+                                    on f.EducationId equals e.Id
+                                    where f.IsDeleted == false
+                                    select new
+                                    {
+                                        f.Id,
+                                        f.NameAndSurname,
+                                        f.OfficePhone,
+                                        f.MobilePhone,
+                                        f.MatherOrFarher,
+                                        f.DisabilitySituation,
+                                        f.ContinuallyIllness,
+                                        f.Mail,
+                                        f.AliveOrDead,
+                                        f.TogetherOrSeparetly,
+                                    }).ToList();
+
+
+                    if (families.Count == 0)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(families);
+                }
+            }
+            catch (Exception e)
+            {
+                using (var db=new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
                 }
 
-                return Ok(families);
+                return Ok(e.Message);
             }
+           
         }
 
         /// <summary>
@@ -60,39 +79,58 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/GetFamilyById")]
         public IHttpActionResult GetFamilyById(string id)
         {
-            if (id == null || id == "")
-                return BadRequest("Invalid id");
-
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var family = (from f in db.Families
-                                join j in db.Jobs
-                                on f.JobId equals j.Id
-                                join e in db.Educations
-                                on f.EducationId equals e.Id
-                                where f.Id==id && f.IsDeleted == false
-                                select new
-                                {
-                                    f.Id,
-                                    f.NameAndSurname,
-                                    f.OfficePhone,
-                                    f.MobilePhone,
-                                    f.MatherOrFarher,
-                                    f.DisabilitySituation,
-                                    f.ContinuallyIllness,
-                                    f.Mail,
-                                    f.AliveOrDead,
-                                    f.TogetherOrSeparetly,
-                                }).FirstOrDefault();
+                if (id == null || id == "")
+                    return BadRequest("Invalid id");
 
-
-                if (family == null)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var family = (from f in db.Families
+                                  join j in db.Jobs
+                                  on f.JobId equals j.Id
+                                  join e in db.Educations
+                                  on f.EducationId equals e.Id
+                                  where f.Id == id && f.IsDeleted == false
+                                  select new
+                                  {
+                                      f.Id,
+                                      f.NameAndSurname,
+                                      f.OfficePhone,
+                                      f.MobilePhone,
+                                      f.MatherOrFarher,
+                                      f.DisabilitySituation,
+                                      f.ContinuallyIllness,
+                                      f.Mail,
+                                      f.AliveOrDead,
+                                      f.TogetherOrSeparetly,
+                                  }).FirstOrDefault();
+
+
+                    if (family == null)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(family);
+                }
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
                 }
 
-                return Ok(family);
+                return Ok(e.Message);
             }
+
+          
         }
 
 
@@ -104,41 +142,59 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/GetFamilyByStudentId")]
         public IHttpActionResult GetFamilyByStudentId(string id)
         {
-            if (id == null || id == "")
-                return BadRequest("Invalid id");
-
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var families = (from f in db.Families
-                                join fs in db.FamilyStudents
-                                on f.Id equals fs.FamilyId
-                                join j in db.Jobs
-                                on f.JobId equals j.Id
-                                join e in db.Educations
-                                on f.EducationId equals e.Id
-                                where f.IsDeleted == false && fs.StudentId==id
-                                select new
-                                {
-                                    f.Id,
-                                    f.NameAndSurname,
-                                    f.OfficePhone,
-                                    f.MobilePhone,
-                                    f.MatherOrFarher,
-                                    f.DisabilitySituation,
-                                    f.ContinuallyIllness,
-                                    f.Mail,
-                                    f.AliveOrDead,
-                                    f.TogetherOrSeparetly,
-                                }).ToList();
+                if (id == null || id == "")
+                    return BadRequest("Invalid id");
 
-
-                if (families.Count == 0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
-                }
+                    var families = (from f in db.Families
+                                    join fs in db.FamilyStudents
+                                    on f.Id equals fs.FamilyId
+                                    join j in db.Jobs
+                                    on f.JobId equals j.Id
+                                    join e in db.Educations
+                                    on f.EducationId equals e.Id
+                                    where f.IsDeleted == false && fs.StudentId == id
+                                    select new
+                                    {
+                                        f.Id,
+                                        f.NameAndSurname,
+                                        f.OfficePhone,
+                                        f.MobilePhone,
+                                        f.MatherOrFarher,
+                                        f.DisabilitySituation,
+                                        f.ContinuallyIllness,
+                                        f.Mail,
+                                        f.AliveOrDead,
+                                        f.TogetherOrSeparetly,
+                                    }).ToList();
 
-                return Ok(families);
+
+                    if (families.Count == 0)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(families);
+                }
             }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+                return Ok(e.Message);
+            }
+
+           
         }
 
 
@@ -152,29 +208,48 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/PostNewFamily")]
         public IHttpActionResult PostNewFamily(FamilyViewModel family)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Invalid data");
-
-            using (var db =new StudentFollowDbContext())
+            try
             {
-                db.Families.Add(new Family() 
-                { 
-                    Id=family.Id,
-                    NameAndSurname=family.NameAndSurname,
-                    OfficePhone=family.OfficePhone,
-                    MobilePhone=family.MobilePhone,
-                    HomePhone=family.HomePhone,
-                    DisabilitySituation=family.DisabilitySituation,
-                    ContinuallyIllness=family.ContinuallyIllness,
-                    Mail=family.Mail,
-                    AliveOrDead=family.AliveOrDead,
-                    TogetherOrSeparetly=family.TogetherOrSeparetly,
-                    EducationId=family.EducationId,
-                    JobId=family.JobId,
-                });
-                db.SaveChanges();
+                if (!ModelState.IsValid)
+                    return BadRequest("Invalid data");
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    db.Families.Add(new Family()
+                    {
+                        Id = family.Id,
+                        NameAndSurname = family.NameAndSurname,
+                        OfficePhone = family.OfficePhone,
+                        MobilePhone = family.MobilePhone,
+                        HomePhone = family.HomePhone,
+                        DisabilitySituation = family.DisabilitySituation,
+                        ContinuallyIllness = family.ContinuallyIllness,
+                        Mail = family.Mail,
+                        AliveOrDead = family.AliveOrDead,
+                        TogetherOrSeparetly = family.TogetherOrSeparetly,
+                        EducationId = family.EducationId,
+                        JobId = family.JobId,
+                    });
+                    db.SaveChanges();
+                }
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+                return Ok(e.Message);
+            }
+
+
+            
         }
 
 
@@ -188,36 +263,54 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/PutFamily")]
         public IHttpActionResult PutFamily(FamilyViewModel family)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Not a valid model");
-            }
-            using (var db=new StudentFollowDbContext())
-            {
-                var existingFamily = db.Families.Where(f => f.Id == family.Id).FirstOrDefault();
-
-                if(existingFamily!=null)
+                if (!ModelState.IsValid)
                 {
-                    existingFamily.NameAndSurname = family.NameAndSurname;
-                    existingFamily.OfficePhone = family.OfficePhone;
-                    existingFamily.MobilePhone = family.MobilePhone;
-                    existingFamily.HomePhone = family.HomePhone;
-                    existingFamily.MatherOrFarher = family.MatherAndFather;
-                    existingFamily.DisabilitySituation = family.DisabilitySituation;
-                    existingFamily.ContinuallyIllness = family.ContinuallyIllness;
-                    existingFamily.Mail = family.Mail;
-                    existingFamily.AliveOrDead = family.AliveOrDead;
-                    existingFamily.TogetherOrSeparetly = family.TogetherOrSeparetly;
-                    existingFamily.EducationId = family.EducationId;
-                    existingFamily.JobId = family.JobId;
+                    return BadRequest("Not a valid model");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var existingFamily = db.Families.Where(f => f.Id == family.Id).FirstOrDefault();
+
+                    if (existingFamily != null)
+                    {
+                        existingFamily.NameAndSurname = family.NameAndSurname;
+                        existingFamily.OfficePhone = family.OfficePhone;
+                        existingFamily.MobilePhone = family.MobilePhone;
+                        existingFamily.HomePhone = family.HomePhone;
+                        existingFamily.MatherOrFarher = family.MatherAndFather;
+                        existingFamily.DisabilitySituation = family.DisabilitySituation;
+                        existingFamily.ContinuallyIllness = family.ContinuallyIllness;
+                        existingFamily.Mail = family.Mail;
+                        existingFamily.AliveOrDead = family.AliveOrDead;
+                        existingFamily.TogetherOrSeparetly = family.TogetherOrSeparetly;
+                        existingFamily.EducationId = family.EducationId;
+                        existingFamily.JobId = family.JobId;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
                 }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(e.Message);
             }
-            return Ok();
+
+            
         }
 
 
@@ -230,26 +323,44 @@ namespace StudentFollowApi.Controllers
         [Route("api/Family/DeleteFamily")]
         public IHttpActionResult DeleteFamily(string id)
         {
-            if (id == null || id == "")
+            try
             {
-                return BadRequest("Not a valid student id");
-            }
-            using (var db=new StudentFollowDbContext())
-            {
-                var family = db.Families.Where(f => f.Id == id).FirstOrDefault();
-
-                if (family != null)
+                if (id == null || id == "")
                 {
-                    family.IsDeleted = true;
+                    return BadRequest("Not a valid student id");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var family = db.Families.Where(f => f.Id == id).FirstOrDefault();
+
+                    if (family != null)
+                    {
+                        family.IsDeleted = true;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
                 }
-                else
-                {
-                    return NotFound();    
-                }
-
+                return Ok(e.Message);
             }
-            return Ok();
+
+           
         }
     }
 }

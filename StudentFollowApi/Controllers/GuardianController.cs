@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
 {
+    [Authorize]
     public class GuardianController : ApiController
     {
         /// <summary>
@@ -20,30 +21,48 @@ namespace StudentFollowApi.Controllers
         [Route("api/Guardian/GetAllGuardians")]
         public IHttpActionResult GetAllGuardians()
         {
-
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var guardians = (from g in db.Guardians
-                                join p in db.Proximities
-                                on g.ProximityId equals p.Id
-                                where g.IsDeleted == false
-                                select new
-                                {
-                                    g.Id,
-                                    g.NameAndSurname,
-                                    g.MobilePhone,
-                                    Proximity=p.Name
-                                }).ToList();
-
-
-                if (guardians.Count == 0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var guardians = (from g in db.Guardians
+                                     join p in db.Proximities
+                                     on g.ProximityId equals p.Id
+                                     where g.IsDeleted == false
+                                     select new
+                                     {
+                                         g.Id,
+                                         g.NameAndSurname,
+                                         g.MobilePhone,
+                                         Proximity = p.Name
+                                     }).ToList();
+
+
+                    if (guardians.Count == 0)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(guardians);
+
+                }
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
                 }
 
-                return Ok(guardians);
-
+                return Ok(e.Message);
             }
+
+           
         }
 
         /// <summary>
@@ -53,32 +72,52 @@ namespace StudentFollowApi.Controllers
         /// <returns></returns>
         public IHttpActionResult GetGuardianById(string id)
         {
-            if (id == null || id == "")
-                return BadRequest("Invalid id");
-
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var guardian = (from g in db.Guardians
-                                 join p in db.Proximities
-                                 on g.ProximityId equals p.Id
-                                 where g.Id==id && g.IsDeleted == false
-                                 select new
-                                 {
-                                     g.Id,
-                                     g.NameAndSurname,
-                                     g.MobilePhone,
-                                     Proximity = p.Name
-                                 }).ToList();
+                if (id == null || id == "")
+                    return BadRequest("Invalid id");
 
-
-                if (guardian.Count == 0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var guardian = (from g in db.Guardians
+                                    join p in db.Proximities
+                                    on g.ProximityId equals p.Id
+                                    where g.Id == id && g.IsDeleted == false
+                                    select new
+                                    {
+                                        g.Id,
+                                        g.NameAndSurname,
+                                        g.MobilePhone,
+                                        Proximity = p.Name
+                                    }).ToList();
+
+
+                    if (guardian.Count == 0)
+                    {
+                        return NotFound();
+                    }
+
+                    return Ok(guardian);
+
+                }
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
                 }
 
-                return Ok(guardian);
-
+                return Ok(e.Message);
             }
+
+
+           
         }
 
         /// <summary>
@@ -89,24 +128,43 @@ namespace StudentFollowApi.Controllers
         [Route("api/Guardian/PostNewGuardian")]
         public IHttpActionResult PostNewGuardian(GuardianViewModel guardian)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Invalid data");
-            }
-            using (var db = new StudentFollowDbContext())
-            {
-                db.Guardians.Add(new Guardian()
+                if (!ModelState.IsValid)
                 {
-                    Id = guardian.Id,
-                    NameAndSurname = guardian.NameAndSurname,
-                    MobilePhone=guardian.MobilePhone,
-                    ProximityId=guardian.ProximityId
-                });
+                    return BadRequest("Invalid data");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    db.Guardians.Add(new Guardian()
+                    {
+                        Id = guardian.Id,
+                        NameAndSurname = guardian.NameAndSurname,
+                        MobilePhone = guardian.MobilePhone,
+                        ProximityId = guardian.ProximityId
+                    });
 
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
             }
 
-            return Ok();
+           
         }
 
 
@@ -120,28 +178,47 @@ namespace StudentFollowApi.Controllers
         [Route("api/Guardian/PutGuardian")]
         public IHttpActionResult PutGuardian(GuardianViewModel guardian)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Not a valid model");
-            }
-            using (var db = new StudentFollowDbContext())
-            {
-                var existingGuardian = db.Guardians.Where(g => g.Id == guardian.Id && g.IsDeleted == false)
-                                                .FirstOrDefault();
-                if (existingGuardian != null)
+                if (!ModelState.IsValid)
                 {
-                    existingGuardian.NameAndSurname = guardian.NameAndSurname;
-                    existingGuardian.MobilePhone = guardian.MobilePhone;
-                    existingGuardian.ProximityId = guardian.ProximityId;
-                    db.SaveChanges();
+                    return BadRequest("Not a valid model");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var existingGuardian = db.Guardians.Where(g => g.Id == guardian.Id && g.IsDeleted == false)
+                                                    .FirstOrDefault();
+                    if (existingGuardian != null)
+                    {
+                        existingGuardian.NameAndSurname = guardian.NameAndSurname;
+                        existingGuardian.MobilePhone = guardian.MobilePhone;
+                        existingGuardian.ProximityId = guardian.ProximityId;
+                        db.SaveChanges();
 
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+            
 
         }
 
@@ -154,26 +231,46 @@ namespace StudentFollowApi.Controllers
         [Route("api/Guardian/DeleteGuardian")]
         public IHttpActionResult DeleteGuardian(string id)
         {
-            if (id == null || id == "")
+            try
             {
-                return BadRequest("Not a valid student id");
-            }
-            using (var db = new StudentFollowDbContext())
-            {
-                var guardian = db.Guardians
-                              .Where(g => g.Id == id && g.IsDeleted == false)
-                              .FirstOrDefault();
-                if (guardian != null)
+
+                if (id == null || id == "")
                 {
-                    guardian.IsDeleted = true;
+                    return BadRequest("Not a valid student id");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var guardian = db.Guardians
+                                  .Where(g => g.Id == id && g.IsDeleted == false)
+                                  .FirstOrDefault();
+                    if (guardian != null)
+                    {
+                        guardian.IsDeleted = true;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
                 }
-                else
-                {
-                    return NotFound();
-                }
+
+                return Ok(e.Message);
             }
-            return Ok();
+
         }
     }
 }

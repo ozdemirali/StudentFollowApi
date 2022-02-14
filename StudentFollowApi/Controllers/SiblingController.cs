@@ -10,6 +10,8 @@ using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
 {
+
+    [Authorize]
     public class SiblingController : ApiController
     {
         /// <summary>
@@ -20,28 +22,48 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/GetAllSiblings")]
         public IHttpActionResult GetAllSiblings()
         {
-            using (var db=new StudentFollowDbContext())
+            try
             {
-                var siblings = (from sb in db.Siblings
-                                join j in db.Jobs
-                                on sb.JobId equals j.Id
-                                join e in db.Educations
-                                on sb.EducationId equals e.Id
-                                where sb.IsDeleted==false
-                                select new { 
-                                sb.Id,
-                                sb.NameAndSurname,
-                                sb.ContinuallyIllness,
-                                Job=j.Name,
-                                Education=e.Name
-                                }).ToList();
-
-                if (siblings.Count == 0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var siblings = (from sb in db.Siblings
+                                    join j in db.Jobs
+                                    on sb.JobId equals j.Id
+                                    join e in db.Educations
+                                    on sb.EducationId equals e.Id
+                                    where sb.IsDeleted == false
+                                    select new
+                                    {
+                                        sb.Id,
+                                        sb.NameAndSurname,
+                                        sb.ContinuallyIllness,
+                                        Job = j.Name,
+                                        Education = e.Name
+                                    }).ToList();
+
+                    if (siblings.Count == 0)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(siblings);
                 }
-                return Ok(siblings);
             }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+            
         }
 
         /// <summary>
@@ -52,29 +74,48 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/GetSiblingById")]
         public IHttpActionResult GetSiblingById(string id)
         {
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var sibling = (from sb in db.Siblings
-                                join j in db.Jobs
-                                on sb.JobId equals j.Id
-                                join e in db.Educations
-                                on sb.EducationId equals e.Id
-                                where sb.Id==id && sb.IsDeleted == false 
-                                select new
-                                {
-                                    sb.Id,
-                                    sb.NameAndSurname,
-                                    sb.ContinuallyIllness,
-                                    Job = j.Name,
-                                    Education = e.Name
-                                }).ToList();
-
-                if (sibling == null)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var sibling = (from sb in db.Siblings
+                                   join j in db.Jobs
+                                   on sb.JobId equals j.Id
+                                   join e in db.Educations
+                                   on sb.EducationId equals e.Id
+                                   where sb.Id == id && sb.IsDeleted == false
+                                   select new
+                                   {
+                                       sb.Id,
+                                       sb.NameAndSurname,
+                                       sb.ContinuallyIllness,
+                                       Job = j.Name,
+                                       Education = e.Name
+                                   }).ToList();
+
+                    if (sibling == null)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(sibling);
                 }
-                return Ok(sibling);
             }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+          
         }
 
 
@@ -87,29 +128,48 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/GetSiblingsByStudentId")]
         public IHttpActionResult GetSiblingsByStudentId(string id)
         {
-            using (var db = new StudentFollowDbContext())
+            try
             {
-                var siblings = (from sb in db.Siblings
-                                join j in db.Jobs
-                                on sb.JobId equals j.Id
-                                join e in db.Educations
-                                on sb.EducationId equals e.Id
-                                where sb.StudentId==id 
-                                select new
-                                {
-                                    sb.Id,
-                                    sb.NameAndSurname,
-                                    sb.ContinuallyIllness,
-                                    Job = j.Name,
-                                    Education = e.Name
-                                }).ToList();
-
-                if (siblings.Count == 0)
+                using (var db = new StudentFollowDbContext())
                 {
-                    return NotFound();
+                    var siblings = (from sb in db.Siblings
+                                    join j in db.Jobs
+                                    on sb.JobId equals j.Id
+                                    join e in db.Educations
+                                    on sb.EducationId equals e.Id
+                                    where sb.StudentId == id
+                                    select new
+                                    {
+                                        sb.Id,
+                                        sb.NameAndSurname,
+                                        sb.ContinuallyIllness,
+                                        Job = j.Name,
+                                        Education = e.Name
+                                    }).ToList();
+
+                    if (siblings.Count == 0)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(siblings);
                 }
-                return Ok(siblings);
             }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+           
         }
 
 
@@ -122,24 +182,44 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/PostNewSibling")]
         public IHttpActionResult PostNewSibling(SiblingViewModel sibling)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Invalid data");
-
-            using (var db=new StudentFollowDbContext())
+            try
             {
-                db.Siblings.Add(new Models.Sibling() { 
-                    Id=sibling.Id,
-                    NameAndSurname=sibling.NameAndSurname,
-                    ContinuallyIllness=sibling.ContinuallyIllness,
-                    EducationId=sibling.EducationId,
-                    JobId=sibling.JobId,
-                    StudentId=sibling.StudentId,
-                });
+                if (!ModelState.IsValid)
+                    return BadRequest("Invalid data");
 
-                db.SaveChanges();
+                using (var db = new StudentFollowDbContext())
+                {
+                    db.Siblings.Add(new Models.Sibling()
+                    {
+                        Id = sibling.Id,
+                        NameAndSurname = sibling.NameAndSurname,
+                        ContinuallyIllness = sibling.ContinuallyIllness,
+                        EducationId = sibling.EducationId,
+                        JobId = sibling.JobId,
+                        StudentId = sibling.StudentId,
+                    });
+
+                    db.SaveChanges();
+                }
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
             }
 
-            return Ok();
+            
         }
 
 
@@ -152,31 +232,50 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/PutSibling")]
         public IHttpActionResult PutSibling(SiblingViewModel sibling)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Not a valid model");
-            }
-            using (var db = new StudentFollowDbContext())
-            {
-                var existingSibling = db.Siblings.Where(sb => sb.Id == sibling.Id && sb.IsDeleted == false)
-                                                .FirstOrDefault();
-                if (existingSibling != null)
+                if (!ModelState.IsValid)
                 {
-                    existingSibling.NameAndSurname = sibling.NameAndSurname;
-                    existingSibling.ContinuallyIllness = sibling.ContinuallyIllness;
-                    existingSibling.EducationId = sibling.EducationId;
-                    existingSibling.JobId = sibling.JobId;
-                    existingSibling.StudentId = sibling.StudentId;
+                    return BadRequest("Not a valid model");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var existingSibling = db.Siblings.Where(sb => sb.Id == sibling.Id && sb.IsDeleted == false)
+                                                    .FirstOrDefault();
+                    if (existingSibling != null)
+                    {
+                        existingSibling.NameAndSurname = sibling.NameAndSurname;
+                        existingSibling.ContinuallyIllness = sibling.ContinuallyIllness;
+                        existingSibling.EducationId = sibling.EducationId;
+                        existingSibling.JobId = sibling.JobId;
+                        existingSibling.StudentId = sibling.StudentId;
 
+                        db.SaveChanges();
+
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
+                }
 
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(e.Message);
             }
-            return Ok();
+
+            
         }
 
 
@@ -189,26 +288,45 @@ namespace StudentFollowApi.Controllers
         [Route("api/Sibling/DeleteSibling")]
         public IHttpActionResult DeleteSibling(string id)
         {
-            if (id == null || id == "")
+            try
             {
-                return BadRequest("Not a valid student id");
-            }
-            using (var db = new StudentFollowDbContext())
-            {
-                var student = db.Siblings
-                              .Where(sb => sb.Id == id && sb.IsDeleted == false)
-                              .FirstOrDefault();
-                if (student != null)
+                if (id == null || id == "")
                 {
-                    student.IsDeleted = true;
+                    return BadRequest("Not a valid student id");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var student = db.Siblings
+                                  .Where(sb => sb.Id == id && sb.IsDeleted == false)
+                                  .FirstOrDefault();
+                    if (student != null)
+                    {
+                        student.IsDeleted = true;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
                     db.SaveChanges();
                 }
-                else
-                {
-                    return NotFound();
-                }
+
+                return Ok(e.Message);
             }
-            return Ok();
+
+            
         }
     }
 }
