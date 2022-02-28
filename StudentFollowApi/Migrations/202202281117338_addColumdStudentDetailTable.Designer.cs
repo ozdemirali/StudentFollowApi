@@ -7,13 +7,13 @@ namespace StudentFollowApi.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class edtiUserTable : IMigrationMetadata
+    public sealed partial class addColumdStudentDetailTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(edtiUserTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addColumdStudentDetailTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202202121907070_edtiUserTable"; }
+            get { return "202202281117338_addColumdStudentDetailTable"; }
         }
         
         string IMigrationMetadata.Source

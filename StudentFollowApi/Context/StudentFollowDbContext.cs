@@ -28,6 +28,7 @@ namespace StudentFollowApi.Context
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Proximity> Proximities { get; set; }
         public DbSet<Religion> Religions { get; set; }
+        public DbSet<TypeOfDisability> TypeOfDisabilities { get;set; }
         public DbSet<Sibling> Siblings { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentDetail> StudentDetails { get; set; }

@@ -40,9 +40,7 @@ namespace StudentFollowApi.Models
 
         public decimal FamilyIncomeMoney { get; set; } // Ailenin Kazandığı Para Miktarı
 
-        [MaxLength(50)]
-        public string TypeOfDisability { get; set; } //Özür Türü
-
+       
         public bool Scheck { get; set; } // Sosyal Hiz. Çocuk Esirgeme Kurumuna Tabi mi?
 
         [MaxLength(50)]
@@ -56,7 +54,7 @@ namespace StudentFollowApi.Models
 
         public bool RentOfHouse { get; set; }  //Evi Kira mı?
 
-        public bool HaveOwnHouse { get; set; } //Keni Odası var mı?
+        public bool HaveOwnRoom { get; set; } //Keni Odası var mı?
 
         public bool Working { get; set; } //Bir İşte Çalışıyor mu?
 
@@ -65,6 +63,10 @@ namespace StudentFollowApi.Models
         public bool CameFromAbroad { get; set; } //Yurt Dışından Geldi mi?
 
         public bool Scholarship { get; set; } //Burslu mu?
+        public bool MartyrChild { get; set; } // Şehit Çocuğu mu?
+
+        public byte TypeOfDisabilityId { get; set; } //Özür Türü
+        public TypeOfDisability TypeOfDisability { get; set; }
 
         public byte HomeHeatingId { get; set; }
         public HomeHeating HomeHeating { get; set; }

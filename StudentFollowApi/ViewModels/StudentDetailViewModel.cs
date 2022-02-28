@@ -18,18 +18,20 @@ namespace StudentFollowApi.ViewModels
         public string PastOperation { get; set; }
         public string Accident { get; set; } //Geçirdiği Kazalar
         public decimal FamilyIncomeMoney { get; set; } // Ailenin Kazandığı Para Miktarı
-        public string TypeOfDisability { get; set; } //Özür Türü
+       
         public bool Scheck { get; set; } // Sosyal Hiz. Çocuk Esirgeme Kurumuna Tabi mi?
         public string PlaceOfBirth { get; set; } //Doğum Yeri
         public DateTime DateOfBirth { get; set; }
         public string RecordNumberOfIdentityCard { get; set; }
         public DateTime GivenDateOfIdentityCard { get; set; }
         public bool RentOfHouse { get; set; }  //Evi Kira mı?
-        public bool HaveOwnHouse { get; set; } //Keni Odası var mı?
+        public bool HaveOwnRoom { get; set; } //Keni Odası var mı?
         public bool Working { get; set; } //Bir İşte Çalışıyor mu?
         public bool OutsideFromFamily { get; set; } //Aile dışında evde kalan var mı?
         public bool CameFromAbroad { get; set; } //Yurt Dışından Geldi mi?
         public bool Scholarship { get; set; } //Burslu mu?
+        public bool MartyrChild { get; set; } // Şehit Çocuğu mu?
+        public byte TypeOfDisabilityId { get; set; } //Özür Türü
         public byte HomeHeatingId { get; set; }
         public byte WhitWhomLiveId { get; set; }
         public byte BloodGroupId { get; set; }

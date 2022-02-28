@@ -152,17 +152,13 @@
     <Compile Include="Controllers\SiblingController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDetailController.cs" />
-    <Compile Include="Migrations\202202051855198_initialDatabase.cs" />
-    <Compile Include="Migrations\202202051855198_initialDatabase.designer.cs">
-      <DependentUpon>202202051855198_initialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202202281108495_initialDatabase.cs" />
+    <Compile Include="Migrations\202202281108495_initialDatabase.designer.cs">
+      <DependentUpon>202202281108495_initialDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202202051902003_editStudentDetailTable.cs" />
-    <Compile Include="Migrations\202202051902003_editStudentDetailTable.designer.cs">
-      <DependentUpon>202202051902003_editStudentDetailTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202121907070_edtiUserTable.cs" />
-    <Compile Include="Migrations\202202121907070_edtiUserTable.designer.cs">
-      <DependentUpon>202202121907070_edtiUserTable.cs</DependentUpon>
+    <Compile Include="Migrations\202202281117338_addColumdStudentDetailTable.cs" />
+    <Compile Include="Migrations\202202281117338_addColumdStudentDetailTable.designer.cs">
+      <DependentUpon>202202281117338_addColumdStudentDetailTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
@@ -186,6 +182,7 @@
     <Compile Include="Models\Sibling.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentDetail.cs" />
+    <Compile Include="Models\TypeOfDisability.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhitWhomLive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,14 +207,11 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202051855198_initialDatabase.resx">
-      <DependentUpon>202202051855198_initialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202281108495_initialDatabase.resx">
+      <DependentUpon>202202281108495_initialDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202051902003_editStudentDetailTable.resx">
-      <DependentUpon>202202051902003_editStudentDetailTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202121907070_edtiUserTable.resx">
-      <DependentUpon>202202121907070_edtiUserTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202281117338_addColumdStudentDetailTable.resx">
+      <DependentUpon>202202281117338_addColumdStudentDetailTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

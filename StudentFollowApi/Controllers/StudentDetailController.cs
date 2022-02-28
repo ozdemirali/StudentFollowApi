@@ -61,7 +61,7 @@ namespace StudentFollowApi.Controllers
                                               sd.RecordNumberOfIdentityCard,
                                               sd.GivenDateOfIdentityCard,
                                               sd.RentOfHouse,
-                                              sd.HaveOwnHouse,
+                                              sd.HaveOwnRoom,
                                               sd.Working,
                                               sd.OutsideFromFamily,
                                               sd.CameFromAbroad,
@@ -130,6 +130,8 @@ namespace StudentFollowApi.Controllers
                                          on sd.ReligionId equals rg.Id
                                          join wwl in db.WhitWhomLives
                                          on sd.WhitWhomLiveId equals wwl.Id
+                                         join tod in db.TypeOfDisabilities
+                                         on sd.TypeOfDisabilityId equals tod.Id
 
                                          where sd.IsDeleted == false
                                          select new
@@ -145,18 +147,18 @@ namespace StudentFollowApi.Controllers
                                              sd.PastOperation,
                                              sd.Accident,
                                              sd.FamilyIncomeMoney,
-                                             sd.TypeOfDisability,
                                              sd.Scheck,
                                              sd.PlaceOfBirth,
                                              sd.DateOfBirth,
                                              sd.RecordNumberOfIdentityCard,
                                              sd.GivenDateOfIdentityCard,
                                              sd.RentOfHouse,
-                                             sd.HaveOwnHouse,
+                                             sd.HaveOwnRoom,
                                              sd.Working,
                                              sd.OutsideFromFamily,
                                              sd.CameFromAbroad,
                                              sd.Scholarship,
+                                             TypeOfDisability=tod.Name,
                                              HomeHeating = hh.Name,
                                              WhitWhomLive = wwl.Name,
                                              BloodGroup = bg.Name,
@@ -223,18 +225,19 @@ namespace StudentFollowApi.Controllers
                         PastOperation = studentDetail.PastOperation,
                         Accident = studentDetail.Accident,
                         FamilyIncomeMoney = studentDetail.FamilyIncomeMoney,
-                        TypeOfDisability = studentDetail.TypeOfDisability,
+                        TypeOfDisabilityId = studentDetail.TypeOfDisabilityId,
                         Scheck = studentDetail.Scheck,
                         PlaceOfBirth = studentDetail.PastOperation,
                         DateOfBirth = studentDetail.DateOfBirth,
                         RecordNumberOfIdentityCard = studentDetail.RecordNumberOfIdentityCard,
                         GivenDateOfIdentityCard = studentDetail.GivenDateOfIdentityCard,
                         RentOfHouse = studentDetail.RentOfHouse,
-                        HaveOwnHouse = studentDetail.HaveOwnHouse,
+                        HaveOwnRoom = studentDetail.HaveOwnRoom,
                         Working = studentDetail.Working,
                         OutsideFromFamily = studentDetail.OutsideFromFamily,
                         CameFromAbroad = studentDetail.CameFromAbroad,
                         Scholarship = studentDetail.Scholarship,
+                        MartyrChild=studentDetail.MartyrChild,
                         HomeHeatingId = studentDetail.HomeHeatingId,
                         WhitWhomLiveId = studentDetail.WhitWhomLiveId,
                         BloodGroupId = studentDetail.BloodGroupId,
@@ -301,14 +304,14 @@ namespace StudentFollowApi.Controllers
                         existingStudentDetail.PastOperation = studentDetail.PastOperation;
                         existingStudentDetail.Accident = studentDetail.Accident;
                         existingStudentDetail.FamilyIncomeMoney = studentDetail.FamilyIncomeMoney;
-                        existingStudentDetail.TypeOfDisability = studentDetail.TypeOfDisability;
+                        existingStudentDetail.TypeOfDisabilityId = studentDetail.TypeOfDisabilityId;
                         existingStudentDetail.Scheck = studentDetail.Scheck;
                         existingStudentDetail.PlaceOfBirth = studentDetail.PastOperation;
                         existingStudentDetail.DateOfBirth = studentDetail.DateOfBirth;
                         existingStudentDetail.RecordNumberOfIdentityCard = studentDetail.RecordNumberOfIdentityCard;
                         existingStudentDetail.GivenDateOfIdentityCard = studentDetail.GivenDateOfIdentityCard;
                         existingStudentDetail.RentOfHouse = studentDetail.RentOfHouse;
-                        existingStudentDetail.HaveOwnHouse = studentDetail.HaveOwnHouse;
+                        existingStudentDetail.HaveOwnRoom = studentDetail.HaveOwnRoom;
                         existingStudentDetail.Working = studentDetail.Working;
                         existingStudentDetail.OutsideFromFamily = studentDetail.OutsideFromFamily;
                         existingStudentDetail.CameFromAbroad = studentDetail.CameFromAbroad;
