@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace StudentFollowApi.Controllers
 {
+    [Authorize]
     public class FilterController : ApiController
     {
 
