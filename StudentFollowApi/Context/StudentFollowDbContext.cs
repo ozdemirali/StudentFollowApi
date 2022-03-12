@@ -35,6 +35,7 @@ namespace StudentFollowApi.Context
         public DbSet<WhitWhomLive> WhitWhomLives { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Filter> Filters { get; set; }
         public DbSet<Error> Errors { get; set; }
 
 
