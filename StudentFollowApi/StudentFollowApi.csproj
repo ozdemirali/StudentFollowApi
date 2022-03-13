@@ -177,6 +177,10 @@
     <Compile Include="Migrations\202203121421174_addDeletedColumnFilterTable.designer.cs">
       <DependentUpon>202203121421174_addDeletedColumnFilterTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203131553018_editFamliyTable.cs" />
+    <Compile Include="Migrations\202203131553018_editFamliyTable.designer.cs">
+      <DependentUpon>202203131553018_editFamliyTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -243,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203121421174_addDeletedColumnFilterTable.resx">
       <DependentUpon>202203121421174_addDeletedColumnFilterTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203131553018_editFamliyTable.resx">
+      <DependentUpon>202203131553018_editFamliyTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -54,7 +54,7 @@ namespace StudentFollowApi.Controllers
                                               sd.PastOperation,
                                               sd.Accident,
                                               sd.FamilyIncomeMoney,
-                                              sd.TypeOfDisability,
+                                              TypeOfDisability=sd.TypeOfDisability.Name,
                                               sd.Scheck,
                                               sd.PlaceOfBirth,
                                               sd.DateOfBirth,
@@ -316,6 +316,7 @@ namespace StudentFollowApi.Controllers
                         existingStudentDetail.OutsideFromFamily = studentDetail.OutsideFromFamily;
                         existingStudentDetail.CameFromAbroad = studentDetail.CameFromAbroad;
                         existingStudentDetail.Scholarship = studentDetail.Scholarship;
+                        existingStudentDetail.MartyrChild = studentDetail.MartyrChild;
                         existingStudentDetail.HomeHeatingId = studentDetail.HomeHeatingId;
                         existingStudentDetail.WhitWhomLiveId = studentDetail.WhitWhomLiveId;
                         existingStudentDetail.BloodGroupId = studentDetail.BloodGroupId;

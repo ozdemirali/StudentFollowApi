@@ -23,7 +23,7 @@ namespace StudentFollowApi.Models
         [MaxLength(11)]
         public string HomePhone { get; set; }
 
-        public bool MatherOrFarher { get; set; }
+        public bool MatherOrFather { get; set; }
 
         [MaxLength(50)]
         public string DisabilitySituation { get; set; } //Engel Durumu

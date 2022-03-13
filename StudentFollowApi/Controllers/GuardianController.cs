@@ -70,6 +70,8 @@ namespace StudentFollowApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("api/Guardian/GetGuardianById")]
         public IHttpActionResult GetGuardianById(string id)
         {
             try

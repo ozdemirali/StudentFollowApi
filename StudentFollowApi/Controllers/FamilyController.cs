@@ -37,7 +37,7 @@ namespace StudentFollowApi.Controllers
                                         f.NameAndSurname,
                                         f.OfficePhone,
                                         f.MobilePhone,
-                                        f.MatherOrFarher,
+                                        f.MatherOrFather,
                                         f.DisabilitySituation,
                                         f.ContinuallyIllness,
                                         f.Mail,
@@ -98,7 +98,7 @@ namespace StudentFollowApi.Controllers
                                       f.NameAndSurname,
                                       f.OfficePhone,
                                       f.MobilePhone,
-                                      f.MatherOrFarher,
+                                      f.MatherOrFather,
                                       f.DisabilitySituation,
                                       f.ContinuallyIllness,
                                       f.Mail,
@@ -163,7 +163,7 @@ namespace StudentFollowApi.Controllers
                                         f.NameAndSurname,
                                         f.OfficePhone,
                                         f.MobilePhone,
-                                        f.MatherOrFarher,
+                                        f.MatherOrFather,
                                         f.DisabilitySituation,
                                         f.ContinuallyIllness,
                                         f.Mail,
@@ -222,6 +222,7 @@ namespace StudentFollowApi.Controllers
                         OfficePhone = family.OfficePhone,
                         MobilePhone = family.MobilePhone,
                         HomePhone = family.HomePhone,
+                        MatherOrFather=family.MatherOrFather,
                         DisabilitySituation = family.DisabilitySituation,
                         ContinuallyIllness = family.ContinuallyIllness,
                         Mail = family.Mail,
@@ -279,7 +280,7 @@ namespace StudentFollowApi.Controllers
                         existingFamily.OfficePhone = family.OfficePhone;
                         existingFamily.MobilePhone = family.MobilePhone;
                         existingFamily.HomePhone = family.HomePhone;
-                        existingFamily.MatherOrFarher = family.MatherAndFather;
+                        existingFamily.MatherOrFather = family.MatherOrFather;
                         existingFamily.DisabilitySituation = family.DisabilitySituation;
                         existingFamily.ContinuallyIllness = family.ContinuallyIllness;
                         existingFamily.Mail = family.Mail;

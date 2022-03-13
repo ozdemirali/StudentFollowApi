@@ -43,6 +43,7 @@ namespace StudentFollowApi.Controllers
                                         s.Id,
                                         s.NameAndSurname,
                                         s.Number,
+                                        s.Phone,
                                         Classroom = c.Name,
                                         Branch = b.Name,
                                         s.Address
@@ -103,6 +104,7 @@ namespace StudentFollowApi.Controllers
                                        s.Id,
                                        s.NameAndSurname,
                                        s.Number,
+                                       s.Phone,
                                        Classroom = c.Name,
                                        Branch = b.Name,
                                        s.Address
@@ -210,6 +212,7 @@ namespace StudentFollowApi.Controllers
                     {
                         existingStudent.NameAndSurname = student.NameAndSurname;
                         existingStudent.Number = student.Number;
+                        existingStudent.Phone = student.Phone;
                         existingStudent.ClassroomId = student.ClassroomId;
                         existingStudent.BranchId = student.BranchId;
                         existingStudent.Address = student.Address;

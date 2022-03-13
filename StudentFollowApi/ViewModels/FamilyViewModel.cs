@@ -12,7 +12,7 @@ namespace StudentFollowApi.ViewModels
         public string OfficePhone { get; set; }
         public string MobilePhone { get; set; }
         public string HomePhone { get; set; }
-        public bool MatherAndFather { get; set; }
+        public bool MatherOrFather { get; set; }
         public string DisabilitySituation { get; set; } //Engel Durumu
         public string ContinuallyIllness { get; set; } //Sürekli Hastalığı
         public string Mail { get; set; }

@@ -209,6 +209,36 @@ namespace StudentFollowApi.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/Filter/GetFilterData")]
+        public IHttpActionResult GetFilterData(string id)
+        {
+            try
+            {
+                using (var db=new StudentFollowDbContext())
+                {
+                    var data = db.Filters.Find(id);
+                    return Ok(data);
+                }
+            }
+            catch (Exception e)
+            {
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+        }
+
+
+
         /// <summary>
         /// This method add or modify data which send
         /// </summary>
