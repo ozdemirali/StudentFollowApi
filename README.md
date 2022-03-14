@@ -109,6 +109,26 @@ This controller have five methods.
   ![DeleteGuardian](https://user-images.githubusercontent.com/20681737/158187473-acb96b55-5292-4b22-809a-67a8c6e83095.JPG)
 
 ### SiblingController
+This controller have six methods
+* GetAllSiblings
+  ![GetAllSiblings](https://user-images.githubusercontent.com/20681737/158187487-ecec141e-ad93-41d2-8bad-f36e6547b6f8.JPG)
+
+* GetSiblingById
+  ![GetSiblingById](https://user-images.githubusercontent.com/20681737/158187507-387e5e2a-a774-4326-9944-a95b314180e2.JPG)
+
+* GetSiblingByStudentId
+  ![GetSiblingsByStudentId](https://user-images.githubusercontent.com/20681737/158187510-dad18093-c3ee-49cd-8c90-ff35cc97fc85.JPG)
+
+* PostNewSibling
+![PostNewSibling_Header](https://user-images.githubusercontent.com/20681737/158187549-3be55e03-b7f0-4420-b001-475da51d3c91.JPG)
+![PostNewSibling_Body](https://user-images.githubusercontent.com/20681737/158187546-6bc1bb28-d1d9-444e-a2bc-b97236e57241.JPG)
+
+* PutSibling
+![PutSibling_Header](https://user-images.githubusercontent.com/20681737/158187586-224bea76-7ee6-4718-b04a-ef92e302f6d6.JPG)
+![PutSibling_Body](https://user-images.githubusercontent.com/20681737/158187582-cf2044a2-6374-49c9-b5c6-961e039d8f5b.JPG)
+
+* DeleteSibling
+  ![DeleteSibling](https://user-images.githubusercontent.com/20681737/158187476-98b3f3e7-c861-4094-94ce-8d28d21252cc.JPG)
 
 ### StudentController
 
@@ -116,26 +136,25 @@ This controller have five methods.
 
 
 
-![DeleteSibling](https://user-images.githubusercontent.com/20681737/158187476-98b3f3e7-c861-4094-94ce-8d28d21252cc.JPG)
+
 ![DeleteStudent](https://user-images.githubusercontent.com/20681737/158187478-6b1c13fd-66c0-4beb-9244-93486fd23ead.JPG)
 ![DeleteStudentDetail](https://user-images.githubusercontent.com/20681737/158187480-e86fb9cf-8637-4ad3-8bf4-589611b41117.JPG)
 
 
-![GetAllSiblings](https://user-images.githubusercontent.com/20681737/158187487-ecec141e-ad93-41d2-8bad-f36e6547b6f8.JPG)
+
 ![GetAllStudentDetails](https://user-images.githubusercontent.com/20681737/158187489-c35b018c-9e7b-4b8d-b16d-45c729b0bb3e.JPG)
 ![GetAllStudents](https://user-images.githubusercontent.com/20681737/158187491-66f500e9-e7e9-4a10-9408-99d14d891819.JPG)
 
 
 
-![GetSiblingById](https://user-images.githubusercontent.com/20681737/158187507-387e5e2a-a774-4326-9944-a95b314180e2.JPG)
-![GetSiblingsByStudentId](https://user-images.githubusercontent.com/20681737/158187510-dad18093-c3ee-49cd-8c90-ff35cc97fc85.JPG)
+
+
 ![GetStudentById](https://user-images.githubusercontent.com/20681737/158187513-98cf6206-5f4c-4d65-8230-7f74d26bb1ac.JPG)
 ![GetStudentDeatailById](https://user-images.githubusercontent.com/20681737/158187516-d3ba5bdd-f6a6-468a-9eb9-f554df497e7e.JPG)
 
 
 
-![PostNewSibling_Body](https://user-images.githubusercontent.com/20681737/158187546-6bc1bb28-d1d9-444e-a2bc-b97236e57241.JPG)
-![PostNewSibling_Header](https://user-images.githubusercontent.com/20681737/158187549-3be55e03-b7f0-4420-b001-475da51d3c91.JPG)
+
 ![PostNewStudent_Body](https://user-images.githubusercontent.com/20681737/158187550-97e64154-0fcf-4dd9-8845-a5e5d9c21c76.JPG)
 ![PostNewStudent_Header](https://user-images.githubusercontent.com/20681737/158187553-4f695af7-b9a0-453e-9c67-2f0fd8b20ab4.JPG)
 ![PostNewStudentDetail_Body](https://user-images.githubusercontent.com/20681737/158187558-f8b9e277-efda-4015-939b-a316fe667618.JPG)
@@ -143,8 +162,7 @@ This controller have five methods.
 
 
 
-![PutSibling_Body](https://user-images.githubusercontent.com/20681737/158187582-cf2044a2-6374-49c9-b5c6-961e039d8f5b.JPG)
-![PutSibling_Header](https://user-images.githubusercontent.com/20681737/158187586-224bea76-7ee6-4718-b04a-ef92e302f6d6.JPG)
+
 ![PutStudent_Body](https://user-images.githubusercontent.com/20681737/158187591-6b4e5296-54c1-400c-81fe-af02c04341cc.JPG)
 ![PutStudent_Header](https://user-images.githubusercontent.com/20681737/158187596-8c9831fc-be0d-4d15-ab04-c32ed9c7c19a.JPG)
 ![PutStudentDetail_Body](https://user-images.githubusercontent.com/20681737/158187603-f26359fa-19e3-4571-a6a4-5b7bf00c5021.JPG)
