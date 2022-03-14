@@ -16,12 +16,30 @@ This proje is created for the student information as Web Api and Mvc from Asp.Ne
 
 ## Database
 * Microsoft Sql Server is used.
-* In Web.config file, The Data source shown as the below. 
+* In Web.config file, The Data source shown as follows. 
 
 # <connectionStrings>
     <add name="StudentFollowDbConnectionString" connectionString="Data Source=DESKTOP-B162HQA\SQLEXPRESS;Initial Catalog=StudentFollowDb;Integrated Security=true" 
          providerName="System.Data.SqlClient" />
  </connectionStrings>
+ 
+ ### Controller
+There are 7 controller
+* FamilyController
+* FamilyStudentController 
+* FilterController
+* GuardianController
+* SiblingController
+* StudentController
+* StudentDetailController
+
+### Authentication
+* You must login first to use methods in this project. 
+* You must get token for login. Token Role-Based Authentication is used.
+* You can test on Postman as follows
+
+* For Authentication
+![Authentication](https://user-images.githubusercontent.com/20681737/158187616-7abc9dab-16e9-4a58-9d65-21ab2edbe33b.JPG)
 
 
 ![DeleteFamilyStudent](https://user-images.githubusercontent.com/20681737/158187468-462382f6-60eb-4366-84c6-b82f4b043150.JPG)
@@ -72,4 +90,4 @@ This proje is created for the student information as Web Api and Mvc from Asp.Ne
 ![PutStudentDetail_Header](https://user-images.githubusercontent.com/20681737/158187605-707c14c5-938f-4353-b85a-e7b0cba282ad.JPG)
 ![Upload_Body](https://user-images.githubusercontent.com/20681737/158187607-0a33652e-5ab2-48cf-a2d6-94cc1b8c65a9.JPG)
 ![Upload_Header](https://user-images.githubusercontent.com/20681737/158187610-d75ac24d-79e8-4597-ad0a-c97605f0d4e1.JPG)
-![Authentication](https://user-images.githubusercontent.com/20681737/158187616-7abc9dab-16e9-4a58-9d65-21ab2edbe33b.JPG)
+
