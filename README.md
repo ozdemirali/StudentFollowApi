@@ -61,7 +61,8 @@ This controller have six method
   ![PutFamily_Body](https://user-images.githubusercontent.com/20681737/158187563-4df1ce04-b5b8-4674-96ea-de19e2ba69b2.JPG)
 
 * DeleteFamily
-* 
+  ![DeleteFamily](https://user-images.githubusercontent.com/20681737/158203505-faee2b6b-7724-46f5-bb8a-9f8d91b7bdf6.JPG)
+
 ### FamilyStudentController
 ![GetFamilyStudentById](https://user-images.githubusercontent.com/20681737/158187497-92568183-1656-4383-8574-e499b0952eb1.JPG)
 
