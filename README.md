@@ -16,7 +16,12 @@ This proje is created for the student information as Web Api and Mvc from Asp.Ne
 
 ## Database
 * Microsoft Sql Server is used.
-* In Web.config file, The Data source shown in the picture below should be your Sql Server Name.
+* In Web.config file, The Data source shown as the below. 
+
+<connectionStrings>
+    <add name="StudentFollowDbConnectionString" connectionString="Data Source=DESKTOP-B162HQA\SQLEXPRESS;Initial Catalog=StudentFollowDb;Integrated Security=true" 
+         providerName="System.Data.SqlClient" />
+</connectionStrings>
 
 
 ![DeleteFamilyStudent](https://user-images.githubusercontent.com/20681737/158187468-462382f6-60eb-4366-84c6-b82f4b043150.JPG)
