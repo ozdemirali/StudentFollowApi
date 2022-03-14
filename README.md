@@ -43,6 +43,20 @@ There are 7 controller
 
 ### FamilyController
 
+### FamilyStudentController
+
+### FilterController
+
+### FamilyController
+
+### GuardianController
+
+### SiblingController
+
+### StudentController
+
+### StudentDetailController
+
 ![DeleteFamilyStudent](https://user-images.githubusercontent.com/20681737/158187468-462382f6-60eb-4366-84c6-b82f4b043150.JPG)
 ![DeleteGuardian](https://user-images.githubusercontent.com/20681737/158187473-acb96b55-5292-4b22-809a-67a8c6e83095.JPG)
 ![DeleteSibling](https://user-images.githubusercontent.com/20681737/158187476-98b3f3e7-c861-4094-94ce-8d28d21252cc.JPG)
