@@ -18,7 +18,7 @@ This proje is created for the student information as Web Api and Mvc from Asp.Ne
 * Microsoft Sql Server is used.
 * In Web.config file, The Data source shown as follows. 
 
-![ConnectionStrings](https://user-images.githubusercontent.com/20681737/158204964-8b247e22-52a6-477e-bf7c-45046e0ea1e4.JPG)
+  ![ConnectionStrings](https://user-images.githubusercontent.com/20681737/158205517-1a39e109-ff43-42dc-8717-0e94280acec4.JPG)
 
  ### Controller
 There are 7 controller
