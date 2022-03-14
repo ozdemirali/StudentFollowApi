@@ -84,7 +84,7 @@ namespace StudentFollowApi.Controllers
         [Authorize(Roles = "Admin,User")]
         [HttpGet]
         [Route("api/Student/GetStudentById")]
-        public IHttpActionResult GetByStudent(string id)
+        public IHttpActionResult GetStudentById(string id)
         {
             try
             {
