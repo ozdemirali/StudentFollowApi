@@ -42,8 +42,28 @@ There are 7 controller
 ![Authentication](https://user-images.githubusercontent.com/20681737/158187616-7abc9dab-16e9-4a58-9d65-21ab2edbe33b.JPG)
 
 ### FamilyController
+This controller have six method
+* GetAllFamilies
+ ![GetAllFamilies](https://user-images.githubusercontent.com/20681737/158187483-49fda2cf-d565-4c12-99ee-a809a9ee5952.JPG)
 
+* GetFamilyById
+ ![GetFamilyById](https://user-images.githubusercontent.com/20681737/158187492-ffd26abf-93e6-40c0-89b0-9ac6feb89beb.JPG)
+
+* GetFamilyByStudentId
+ ![GetFamilyByStudentId](https://user-images.githubusercontent.com/20681737/158187493-50b1a7c7-6a25-48e8-a428-4a94a425ef0d.JPG)
+
+* PostNewFamily
+ ![PostNewFamily_Header](https://user-images.githubusercontent.com/20681737/158187528-ca445193-bfe5-4713-88f9-7c38b12a4c3c.JPG)
+ ![PostNewFamily_Body](https://user-images.githubusercontent.com/20681737/158187519-6dcdddde-0377-43a4-a2af-0d88b5120452.JPG)
+
+* PutFamily
+  ![PutFamily_Header](https://user-images.githubusercontent.com/20681737/158187566-10cf2e72-324c-4a88-bf16-2b967bc45107.JPG)
+  ![PutFamily_Body](https://user-images.githubusercontent.com/20681737/158187563-4df1ce04-b5b8-4674-96ea-de19e2ba69b2.JPG)
+
+* DeleteFamily
+* 
 ### FamilyStudentController
+![GetFamilyStudentById](https://user-images.githubusercontent.com/20681737/158187497-92568183-1656-4383-8574-e499b0952eb1.JPG)
 
 ### FilterController
 
@@ -62,14 +82,12 @@ There are 7 controller
 ![DeleteSibling](https://user-images.githubusercontent.com/20681737/158187476-98b3f3e7-c861-4094-94ce-8d28d21252cc.JPG)
 ![DeleteStudent](https://user-images.githubusercontent.com/20681737/158187478-6b1c13fd-66c0-4beb-9244-93486fd23ead.JPG)
 ![DeleteStudentDetail](https://user-images.githubusercontent.com/20681737/158187480-e86fb9cf-8637-4ad3-8bf4-589611b41117.JPG)
-![GetAllFamilies](https://user-images.githubusercontent.com/20681737/158187483-49fda2cf-d565-4c12-99ee-a809a9ee5952.JPG)
+
 ![GetAllGuardians](https://user-images.githubusercontent.com/20681737/158187486-91cf21bb-8b54-410b-90b3-c51dfaad207c.JPG)
 ![GetAllSiblings](https://user-images.githubusercontent.com/20681737/158187487-ecec141e-ad93-41d2-8bad-f36e6547b6f8.JPG)
 ![GetAllStudentDetails](https://user-images.githubusercontent.com/20681737/158187489-c35b018c-9e7b-4b8d-b16d-45c729b0bb3e.JPG)
 ![GetAllStudents](https://user-images.githubusercontent.com/20681737/158187491-66f500e9-e7e9-4a10-9408-99d14d891819.JPG)
-![GetFamilyById](https://user-images.githubusercontent.com/20681737/158187492-ffd26abf-93e6-40c0-89b0-9ac6feb89beb.JPG)
-![GetFamilyByStudentId](https://user-images.githubusercontent.com/20681737/158187493-50b1a7c7-6a25-48e8-a428-4a94a425ef0d.JPG)
-![GetFamilyStudentById](https://user-images.githubusercontent.com/20681737/158187497-92568183-1656-4383-8574-e499b0952eb1.JPG)
+
 ![GetFilter](https://user-images.githubusercontent.com/20681737/158187500-3b38466c-a84c-4c13-ba3d-c9e8d67fb9e5.JPG)
 ![GetFilterData](https://user-images.githubusercontent.com/20681737/158187503-c0693a62-5bd0-47ca-9aec-68dec2cf6af0.JPG)
 ![GetGuardianById](https://user-images.githubusercontent.com/20681737/158187504-0ad0fbc7-3bc4-4e84-b2f2-ba3e03c6665d.JPG)
@@ -77,8 +95,7 @@ There are 7 controller
 ![GetSiblingsByStudentId](https://user-images.githubusercontent.com/20681737/158187510-dad18093-c3ee-49cd-8c90-ff35cc97fc85.JPG)
 ![GetStudentById](https://user-images.githubusercontent.com/20681737/158187513-98cf6206-5f4c-4d65-8230-7f74d26bb1ac.JPG)
 ![GetStudentDeatailById](https://user-images.githubusercontent.com/20681737/158187516-d3ba5bdd-f6a6-468a-9eb9-f554df497e7e.JPG)
-![PostNewFamily_Body](https://user-images.githubusercontent.com/20681737/158187519-6dcdddde-0377-43a4-a2af-0d88b5120452.JPG)
-![PostNewFamily_Header](https://user-images.githubusercontent.com/20681737/158187528-ca445193-bfe5-4713-88f9-7c38b12a4c3c.JPG)
+
 ![PostNewFamilyStudent_Body](https://user-images.githubusercontent.com/20681737/158187531-aca51cec-e176-46d2-9e59-34b97e057b61.JPG)
 ![PostNewFamilyStudent_Header](https://user-images.githubusercontent.com/20681737/158187534-9fedf5f9-d162-410c-a613-67088f06a721.JPG)
 ![PostNewFilter_Body](https://user-images.githubusercontent.com/20681737/158187536-be8ea5b4-9808-4b01-8f74-428be9363fd6.JPG)
@@ -91,8 +108,7 @@ There are 7 controller
 ![PostNewStudent_Header](https://user-images.githubusercontent.com/20681737/158187553-4f695af7-b9a0-453e-9c67-2f0fd8b20ab4.JPG)
 ![PostNewStudentDetail_Body](https://user-images.githubusercontent.com/20681737/158187558-f8b9e277-efda-4015-939b-a316fe667618.JPG)
 ![PostNewStudentDetail_Header](https://user-images.githubusercontent.com/20681737/158187560-ba82963a-3235-45a2-a75d-96fcc7130562.JPG)
-![PutFamily_Body](https://user-images.githubusercontent.com/20681737/158187563-4df1ce04-b5b8-4674-96ea-de19e2ba69b2.JPG)
-![PutFamily_Header](https://user-images.githubusercontent.com/20681737/158187566-10cf2e72-324c-4a88-bf16-2b967bc45107.JPG)
+
 ![PutFamilyStudent_Body](https://user-images.githubusercontent.com/20681737/158187570-7c08cd4e-09ea-4f24-bd98-fc7cf4be7595.JPG)
 ![PutFamilyStudent_Header](https://user-images.githubusercontent.com/20681737/158187573-300da34c-a543-4243-8867-6d7f8c95d745.JPG)
 ![PutGuradian_Body](https://user-images.githubusercontent.com/20681737/158187577-a68da589-0f4a-4c29-92b6-60db5f17120c.JPG)
