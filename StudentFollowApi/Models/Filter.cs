@@ -8,8 +8,8 @@ namespace StudentFollowApi.Models
 {
     public class Filter
     {
-        [MaxLength(11)]
-        public string Id { get; set; }
+       [Key]
+        public string UserName { get; set; }
         public byte WhitWhomLive { get; set; }
         public byte HowToGetSchool { get; set; }
         public byte TypeOfDisability { get; set; }

@@ -22,17 +22,17 @@ namespace StudentFollowApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/Filter/GetFilter")]
-        public IHttpActionResult GetFilter(string id)
+        public IHttpActionResult GetFilter(string userName)
         {
             try
             {
-                if(id==null || id == "")
+                if(userName == null || userName == "")
                 {
                     return BadRequest("Invalid id");
                 }
                 using (var db = new StudentFollowDbContext())
                 {
-                    var filter = db.Filters.Find(id);
+                    var filter = db.Filters.Find(userName);
                     if (filter == null || filter.IsDeleted==true) 
                     {
                         var students = (from sd in db.StudentDetails
@@ -211,13 +211,13 @@ namespace StudentFollowApi.Controllers
 
         [HttpGet]
         [Route("api/Filter/GetFilterData")]
-        public IHttpActionResult GetFilterData(string id)
+        public IHttpActionResult GetFilterData(string userName)
         {
             try
             {
                 using (var db=new StudentFollowDbContext())
                 {
-                    var data = db.Filters.Find(id);
+                    var data = db.Filters.Find(userName);
                     return Ok(data);
                 }
             }
@@ -260,7 +260,7 @@ namespace StudentFollowApi.Controllers
 
 
                     var data = new Filter() {
-                        Id = filter.Id,
+                        UserName = filter.UserName,
                         WhitWhomLive = filter.WhitWhomLive,
                         RentOfHouse = filter.RentOfHouse,
                         HowToGetSchool = filter.HowToGetSchool,
@@ -278,7 +278,7 @@ namespace StudentFollowApi.Controllers
                     
 
 
-                    if (db.Filters.Where(f=>f.Id==filter.Id).Count()>0){
+                    if (db.Filters.Where(f=>f.UserName==filter.UserName).Count()>0){
                         db.Entry(data).State = System.Data.Entity.EntityState.Modified;
                     }
                     else

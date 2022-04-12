@@ -8,8 +8,7 @@ namespace StudentFollowApi.Models
 {
     public class User
     {
-        [MaxLength(11)]
-        public string Id { get; set; }
+        [Key]
         public string UserName { get; set; }
         public string Password { get; set; }
 

@@ -8,8 +8,7 @@ namespace StudentFollowApi.ViewModels
 {
     public class FilterViewModel
     {
-        [MaxLength(11)]
-        public string Id { get; set; }
+        public string UserName { get; set; }
         public byte WhitWhomLive { get; set; }
         public byte HowToGetSchool { get; set; }
         public byte TypeOfDisability { get; set; }
