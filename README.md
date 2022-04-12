@@ -79,14 +79,14 @@ This controller have four methods
 ### FilterController
 This controller have three methods
 * GetFilter
-  ![GetFilter](https://user-images.githubusercontent.com/20681737/158187500-3b38466c-a84c-4c13-ba3d-c9e8d67fb9e5.JPG)
+ ![GetFilter](https://user-images.githubusercontent.com/20681737/163030323-393589f6-5051-430c-abae-4c267df5ae0b.JPG)
 
 * GetFilterData
-  ![GetFilterData](https://user-images.githubusercontent.com/20681737/158187503-c0693a62-5bd0-47ca-9aec-68dec2cf6af0.JPG)
-
+  ![GetFilterData](https://user-images.githubusercontent.com/20681737/163030329-392fb8b9-27a2-4d73-9e50-2ffd5fd44993.JPG)
+  
 * PostNewFilter
-  ![PostNewFilter_Body](https://user-images.githubusercontent.com/20681737/158187536-be8ea5b4-9808-4b01-8f74-428be9363fd6.JPG)
   ![PostNewFilter_Header](https://user-images.githubusercontent.com/20681737/158187540-ce7bf69c-8857-46d7-8323-3386fb00a529.JPG)
+  ![PostNewFilter_Body](https://user-images.githubusercontent.com/20681737/163030310-370eb97b-f0db-4c9c-b4fb-486ab5d0c4c1.JPG)
 
 ### GuardianController
 This controller have five methods.
