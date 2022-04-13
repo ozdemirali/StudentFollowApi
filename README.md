@@ -79,14 +79,17 @@ This controller have four methods
 ### FilterController
 This controller have three methods
 * GetFilter
- ![GetFilter](https://user-images.githubusercontent.com/20681737/163030323-393589f6-5051-430c-abae-4c267df5ae0b.JPG)
+ ![GetFilter](https://user-images.githubusercontent.com/20681737/163247936-cfcba75b-4282-4003-9ffb-c699f6765337.JPG)
+ 
+ * GetFilterEssential
+ ![GetFilterEssential](https://user-images.githubusercontent.com/20681737/163247965-8bc4a711-5676-4940-a7fb-d6c3dc9c2d9d.JPG)
 
 * GetFilterData
-  ![GetFilterData](https://user-images.githubusercontent.com/20681737/163030329-392fb8b9-27a2-4d73-9e50-2ffd5fd44993.JPG)
+ ![GetFilterData](https://user-images.githubusercontent.com/20681737/163247954-ed5c50d3-a81c-437c-ab43-182b2a83556d.JPG)
   
 * PostNewFilter
   ![PostNewFilter_Header](https://user-images.githubusercontent.com/20681737/158187540-ce7bf69c-8857-46d7-8323-3386fb00a529.JPG)
-  ![PostNewFilter_Body](https://user-images.githubusercontent.com/20681737/163030310-370eb97b-f0db-4c9c-b4fb-486ab5d0c4c1.JPG)
+  ![PostNewFilter_Body](https://user-images.githubusercontent.com/20681737/163248045-16e279d7-783d-4ad4-84bd-2ab59b557d72.JPG)
 
 ### GuardianController
 This controller have five methods.
