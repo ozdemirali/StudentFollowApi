@@ -185,6 +185,10 @@
     <Compile Include="Migrations\202204121815170_editUserFilterTable.designer.cs">
       <DependentUpon>202204121815170_editUserFilterTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204131828234_addColumnFilterTable1.cs" />
+    <Compile Include="Migrations\202204131828234_addColumnFilterTable1.designer.cs">
+      <DependentUpon>202204131828234_addColumnFilterTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BloodGroup.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204121815170_editUserFilterTable.resx">
       <DependentUpon>202204121815170_editUserFilterTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204131828234_addColumnFilterTable1.resx">
+      <DependentUpon>202204131828234_addColumnFilterTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,6 +20,7 @@ namespace StudentFollowApi.Models
         public bool OutsideFromFamily { get; set; }
         public bool HaveOwnRoom { get; set; }
         public bool CameFromAbroad { get; set; }
+        public bool Scholarship { get; set; }
         public bool Scheck { get; set; }
         public bool IsDeleted { get; set; }
 

@@ -18,7 +18,7 @@ namespace StudentFollowApi.Controllers
         /// <summary>
         /// This method get data acording to filter
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="userName"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/Filter/GetFilter")]
@@ -41,7 +41,7 @@ namespace StudentFollowApi.Controllers
                                                   sd.StudentId,
                                                   sd.Student.NameAndSurname,
                                                   sd.Student.Number,
-                                                  sd.Student.Branch.Name,
+                                                  Branch=sd.Student.Branch.Name,
                                                   sd.Student.Phone,
                                                   sd.Student.Address,
                                                   Classroom = sd.Student.Classroom.Name,
@@ -85,6 +85,7 @@ namespace StudentFollowApi.Controllers
                                                     && sd.TypeOfDisabilityId == filter.TypeOfDisability && sd.Working == filter.Working 
                                                     && sd.OutsideFromFamily == filter.OutsideFromFamily && sd.HaveOwnRoom==filter.HaveOwnRoom
                                                     && sd.CameFromAbroad==filter.CameFromAbroad && sd.NumberOfBrotherAndSister == filter.SiblingCount
+                                                    && sd.Scholarship==filter.Scholarship
                                               select new
                                               {
                                                   sd.StudentId,
@@ -208,6 +209,113 @@ namespace StudentFollowApi.Controllers
          
         }
 
+        /// <summary>
+        /// This method get data acording to filter essential
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Filter/GetFilterEssential")]
+        public IHttpActionResult GetFilterEssential(string userName)
+        {
+            try
+            {
+                if (userName == null || userName == "")
+                {
+                    return BadRequest("Invalid id");
+                }
+                using (var db = new StudentFollowDbContext())
+                {
+                    var filter = db.Filters.Find(userName);
+                    if (filter == null || filter.IsDeleted == true)
+                    {
+                        var students = (from sd in db.StudentDetails
+                                        select new
+                                        {
+                                            sd.StudentId,
+                                            sd.Student.NameAndSurname,
+                                            sd.Student.Number,
+                                            Branch = sd.Student.Branch.Name,
+                                            sd.Student.Phone,
+                                            sd.Student.Address,
+                                            Classroom = sd.Student.Classroom.Name,
+                                            sd.NumberOfBrotherAndSister,
+                                            sd.FamilyIncomeMoney,
+                                            TypeOfDisability = sd.TypeOfDisability.Name,
+                                            sd.Scheck,
+                                            sd.RentOfHouse,
+                                            sd.HaveOwnRoom,
+                                            sd.Working,
+                                            sd.OutsideFromFamily,
+                                            sd.CameFromAbroad,
+                                            sd.Scholarship,
+                                            HomeHeating = sd.HomeHeating.Name,
+                                            WhitWhomLive = sd.WhitWhomLive.Name,
+                                            HowToGetSchool = sd.HowToGetSchool.Name,
+                                            Guardian = sd.Guardian.NameAndSurname,
+                                            GurdianPhone = sd.Guardian.MobilePhone
+                                        }).ToList();
+                        return Ok(students);
+                    }
+                    else
+                    {
+                        var students = (from sd in db.StudentDetails
+                                        where sd.IsDeleted == false && sd.FamilyIncomeMoney <= filter.FamilyIncomeMoney && sd.WhitWhomLiveId == filter.WhitWhomLive
+                                              && sd.Scheck == filter.Scheck && sd.RentOfHouse == filter.RentOfHouse && sd.HowToGetSchoolId == filter.HowToGetSchool
+                                              && sd.TypeOfDisabilityId == filter.TypeOfDisability && sd.Working == filter.Working
+                                              && sd.OutsideFromFamily == filter.OutsideFromFamily && sd.HaveOwnRoom == filter.HaveOwnRoom
+                                              && sd.CameFromAbroad == filter.CameFromAbroad && sd.NumberOfBrotherAndSister == filter.SiblingCount
+                                              && sd.Scholarship==filter.Scholarship
+                                        select new
+                                        {
+                                            sd.StudentId,
+                                            sd.Student.NameAndSurname,
+                                            sd.Student.Number,
+                                            Branch = sd.Student.Branch.Name,
+                                            sd.Student.Phone,
+                                            sd.Student.Address,
+                                            Classroom = sd.Student.Classroom.Name,
+                                            sd.NumberOfBrotherAndSister,
+                                            sd.FamilyIncomeMoney,
+                                            TypeOfDisability = sd.TypeOfDisability.Name,
+                                            sd.Scheck,
+                                            sd.RentOfHouse,
+                                            sd.HaveOwnRoom,
+                                            sd.Working,
+                                            sd.OutsideFromFamily,
+                                            sd.CameFromAbroad,
+                                            sd.Scholarship,
+                                            HomeHeating = sd.HomeHeating.Name,
+                                            WhitWhomLive = sd.WhitWhomLive.Name,
+                                            HowToGetSchool = sd.HowToGetSchool.Name,
+                                            Guardian = sd.Guardian.NameAndSurname,
+                                            GurdianPhone = sd.Guardian.MobilePhone
+                                        }).ToList();
+                        return Ok(students);
+                    }
+                  
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                using (var db = new StudentFollowDbContext())
+                {
+                    var error = new Error
+                    {
+                        Message = e.Message
+                    };
+                    db.Errors.Add(error);
+                    db.SaveChanges();
+                }
+
+                return Ok(e.Message);
+            }
+
+        }
 
         [HttpGet]
         [Route("api/Filter/GetFilterData")]
@@ -246,7 +354,7 @@ namespace StudentFollowApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/Filter/PostNewFilter")]
-        public IHttpActionResult PostNewFilter(FilterViewModel filter )
+        public IHttpActionResult PostNewFilter(Filter filter )
         {
             try
             {
@@ -271,6 +379,7 @@ namespace StudentFollowApi.Controllers
                         OutsideFromFamily = filter.OutsideFromFamily,
                         HaveOwnRoom = filter.HaveOwnRoom,
                         CameFromAbroad = filter.CameFromAbroad,
+                        Scholarship=filter.Scholarship,
                         Scheck = filter.Scheck,
                         IsDeleted = filter.IsDeleted,
 
