@@ -73,7 +73,7 @@ namespace StudentFollowApi.Controllers
                                                   Religion = sd.Religion.Name,
                                                   HowToGetSchool = sd.HowToGetSchool.Name,
                                                   Guardian = sd.Guardian.NameAndSurname,
-                                                  GurdianPhone = sd.Guardian.MobilePhone
+                                                  GuardianPhone = sd.Guardian.MobilePhone
                                               }).ToList();
                         return Ok(students);
                     }
@@ -123,7 +123,7 @@ namespace StudentFollowApi.Controllers
                                                   Religion = sd.Religion.Name,
                                                   HowToGetSchool = sd.HowToGetSchool.Name,
                                                   Guardian = sd.Guardian.NameAndSurname,
-                                                  GurdianPhone = sd.Guardian.MobilePhone
+                                                  GuardianPhone = sd.Guardian.MobilePhone
                                               }).ToList();
                         return Ok(students);
                     }
@@ -240,7 +240,7 @@ namespace StudentFollowApi.Controllers
                                             sd.Student.Address,
                                             Classroom = sd.Student.Classroom.Name,
                                             sd.NumberOfBrotherAndSister,
-                                            sd.FamilyIncomeMoney,
+                                            FamilyIncomeMoney=(int)sd.FamilyIncomeMoney,
                                             TypeOfDisability = sd.TypeOfDisability.Name,
                                             sd.Scheck,
                                             sd.RentOfHouse,
@@ -253,7 +253,7 @@ namespace StudentFollowApi.Controllers
                                             WhitWhomLive = sd.WhitWhomLive.Name,
                                             HowToGetSchool = sd.HowToGetSchool.Name,
                                             Guardian = sd.Guardian.NameAndSurname,
-                                            GurdianPhone = sd.Guardian.MobilePhone
+                                            GuardianPhone = sd.Guardian.MobilePhone,
                                         }).ToList();
                         return Ok(students);
                     }
@@ -276,7 +276,7 @@ namespace StudentFollowApi.Controllers
                                             sd.Student.Address,
                                             Classroom = sd.Student.Classroom.Name,
                                             sd.NumberOfBrotherAndSister,
-                                            sd.FamilyIncomeMoney,
+                                            FamilyIncomeMoney=(int)sd.FamilyIncomeMoney,
                                             TypeOfDisability = sd.TypeOfDisability.Name,
                                             sd.Scheck,
                                             sd.RentOfHouse,
@@ -289,7 +289,7 @@ namespace StudentFollowApi.Controllers
                                             WhitWhomLive = sd.WhitWhomLive.Name,
                                             HowToGetSchool = sd.HowToGetSchool.Name,
                                             Guardian = sd.Guardian.NameAndSurname,
-                                            GurdianPhone = sd.Guardian.MobilePhone
+                                            GuardianPhone = sd.Guardian.MobilePhone.ToString(),
                                         }).ToList();
                         return Ok(students);
                     }
