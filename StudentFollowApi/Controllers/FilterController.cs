@@ -33,7 +33,7 @@ namespace StudentFollowApi.Controllers
                 using (var db = new StudentFollowDbContext())
                 {
                     var filter = db.Filters.Find(userName);
-                    if (filter == null || filter.IsDeleted==true) 
+                    if (filter == null || filter.Applied==false) 
                     {
                         var students = (from sd in db.StudentDetails
                                               select new
@@ -227,7 +227,7 @@ namespace StudentFollowApi.Controllers
                 using (var db = new StudentFollowDbContext())
                 {
                     var filter = db.Filters.Find(userName);
-                    if (filter == null || filter.IsDeleted == true)
+                    if (filter == null || filter.Applied == false)
                     {
                         var students = (from sd in db.StudentDetails
                                         select new
@@ -381,7 +381,7 @@ namespace StudentFollowApi.Controllers
                         CameFromAbroad = filter.CameFromAbroad,
                         Scholarship=filter.Scholarship,
                         Scheck = filter.Scheck,
-                        IsDeleted = filter.IsDeleted,
+                        Applied = filter.Applied,
 
                     };
                     
