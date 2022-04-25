@@ -398,7 +398,7 @@ namespace StudentFollowApi.Controllers
 
                     db.SaveChanges();
                 }
-                return Ok();
+                return Ok("Ok");
             }
             catch (Exception e)
             {
